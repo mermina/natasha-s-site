@@ -4,12 +4,11 @@
 
 ## Ссылки для Наташи
 
-GitHub Pages включён (main, папка /root), ссылки рабочие. После каждого пуша сайт
-пересобирается за минуту-две.
+Наташе даём одну ссылку — https://mermina.github.io/natasha-s-site/ — оттуда открываются
+все три варианта. Pages включён, после пуша сайт пересобирается за минуту-две.
 
 | Ссылка | Что откроется |
 |---|---|
-| https://mermina.github.io/natasha-s-site/ | **Оглавление.** Эту ссылку даём Наташе — с неё открываются все три варианта |
 | https://mermina.github.io/natasha-s-site/option-a-one-site.html | **Вариант A — один сайт.** Меню сверху: Books / Photography / Writing / About, всё на одной странице |
 | https://mermina.github.io/natasha-s-site/option-b-two-sides.html | **Вариант B — две половины.** Вход разделён пополам: слева фотография, справа литература. Надо кликнуть на одну из половин, дальше сверху переключатель и ссылка Entrance обратно на вход |
 | https://mermina.github.io/natasha-s-site/books-layouts.html | **Вариант C — три раскладки книг.** Не сайт, а сравнение. Сверху три вкладки — Rail, Staggered, Asymmetric — по каждой надо нажать |
