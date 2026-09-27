@@ -109,7 +109,7 @@ function show(n){
  window.scrollTo(0,0);
 }
 </script>
-<div class="draft">Draft — demo build</div>
+<div class="draft"><a href="index.html" style="color:inherit;text-decoration:none">← все варианты</a> · черновик</div>
 </body></html>""" % (b.CSS, EXTRA, b.books_html(), mosaic_html(), asym_html(), b.LIGHTBOX)
 
 open(os.path.join(here,"books-layouts.html"),"w",encoding="utf-8").write(PAGE)

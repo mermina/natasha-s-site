@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сайт Наташи — черновики</title>
+<style>
+:root{--paper:#f6f5f2;--ink:#14110f;--muted:#6b6560;--line:#ddd9d2;--accent:#14110f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+ font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{font-weight:400;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(24px,3.2vw,34px);margin-bottom:6px}
+p{margin:0 0 18px}
+section{padding:86px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;max-width:46ch;color:var(--ink)}
+.meta{font-size:14px;color:var(--muted)}
+/* single-line gallery */
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+ padding:6px 28px 26px;scrollbar-width:thin}
+.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:center}
+.rail img{height:64vh;min-height:340px;width:auto;display:block;background:#e9e6e1;color:transparent;min-width:220px}
+.rail figcaption{margin-top:10px;font-size:13px;color:var(--muted);display:flex;
+ justify-content:space-between;gap:16px}
+.rail figcaption .series{letter-spacing:.14em;text-transform:uppercase;font-size:10px;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+.hint{font-size:12px;color:var(--muted);padding:0 28px}
+/* books — rail mirroring the photo rail */
+.rail.books figure{max-width:46vw;cursor:zoom-in}
+.rail figure{cursor:zoom-in}
+.rail.books img{height:52vh;min-height:300px;width:auto;object-fit:contain;background:transparent;
+ box-shadow:0 1px 0 rgba(0,0,0,.08),0 18px 38px -22px rgba(0,0,0,.45);transition:transform .35s}
+.rail.books figure:hover img{transform:translateY(-4px)}
+.rail.books .ph{height:52vh;min-height:300px;width:340px;background:#eceae5;display:flex;
+ align-items:center;justify-content:center;padding:34px;text-align:center;font-size:21px;line-height:1.25}
+.rail.books figcaption{display:block;max-width:340px;margin-top:14px}
+.rail.books figcaption .t{font-size:16px}
+.rail.books figcaption .m{font-size:13px;color:var(--muted);margin-top:2px}
+.rail.books figcaption .prize{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(20,17,15,.94);display:none;z-index:80;
+ align-items:center;justify-content:center;flex-direction:column;gap:22px;padding:5vh 5vw;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-height:74vh;max-width:88vw;object-fit:contain;box-shadow:0 30px 70px -30px #000}
+.lb .cap{color:#f6f5f2;text-align:center;max-width:52ch}
+.lb .cap .m{font-size:13px;opacity:.65;margin-top:4px}
+.lb .x{position:absolute;top:22px;right:28px;color:#f6f5f2;font-size:13px;letter-spacing:.16em;
+ text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;opacity:.7}
+/* writing */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;margin-top:34px}
+.cols ul{list-style:none;margin:14px 0 0;padding:0}
+.cols li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.cols h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+/* about */
+.about{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:56px;align-items:start}
+.about img{width:100%;min-height:380px;display:block;background:#e9e6e1;filter:grayscale(1);color:transparent}
+.about .body{max-width:60ch}
+footer{padding:60px 0 80px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+.draft a:hover{text-decoration:underline !important}
+.draft{position:fixed;left:0;bottom:0;background:var(--ink);color:var(--paper);
+ font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;z-index:50;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+@media(max-width:720px){.about{grid-template-columns:1fr;gap:28px}.rail img{height:46vh;min-height:0}}
+
+.hero{padding:96px 0 40px}
+.hero h1{font-size:clamp(32px,5vw,58px);line-height:1.05;max-width:18ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin:40px 0 10px}
+.card{display:block;text-decoration:none;border:1px solid var(--line);padding:28px 26px;
+ background:#fffdfa;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -28px rgba(0,0,0,.45)}
+.card h3{font-size:21px;margin-bottom:10px}
+.card p{font-size:15px;margin:0 0 10px}
+.card .ask{color:var(--muted);font-size:14px}
+.card .go{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+.note{max-width:62ch}
+.note h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;margin-bottom:12px}
+.note li{margin-bottom:10px;font-size:15px}
+</style></head><body>
+<section class="hero"><div class="wrap">
+ <span class="eyebrow">Черновики сайта · сентябрь 2026</span>
+ <h1>Три страницы, которые надо посмотреть</h1>
+ <p class="lede">Это не готовый сайт, а два варианта его устройства и одно сравнение раскладок.
+ Нужно выбрать направление, а не оценивать детали.</p>
+ <div class="cards"><a class="card" href="option-a-one-site.html"><h3>Вариант A — один сайт</h3><p>Обычный сайт с меню сверху: книги, фотография, тексты, об авторе. Всё на одной странице, листается вниз.</p><p class="ask">Посмотри: не теряется ли фотография рядом с книгами.</p><span class="go">Открыть →</span></a>
+<a class="card" href="option-b-two-sides.html"><h3>Вариант B — две половины</h3><p>Твоя идея: вход разделён пополам, слева фотография, справа литература. Выбираешь сторону — попадаешь в свою часть. Сверху остаётся переключатель и ссылка Entrance назад на вход.</p><p class="ask">Посмотри: не мешает ли лишний шаг перед тем, как увидеть работы.</p><span class="go">Открыть →</span></a>
+<a class="card" href="books-layouts.html"><h3>Три способа показать книги</h3><p>Не сайт, а сравнение. Переключатель сверху: 1 — обложки одной строкой, 2 — разного размера и высоты, 3 — без сетки, но все крупные.</p><p class="ask">Выбери один из трёх — он пойдёт в сайт.</p><span class="go">Открыть →</span></a></div>
+</div></section>
+
+<section><div class="wrap note">
+ <h3>Что здесь ненастоящее</h3>
+ <ul>
+  <li><b>Фотографии временные.</b> Они взяты с твоего SmugMug наугад, ты их не отбирала.
+   Смотри на то, как они показаны, а не на то, какие именно снимки.</li>
+  <li><b>Язык — английский только для черновика.</b> На каком языке будет сайт, ещё не решено.</li>
+  <li><b>Тексты и книги</b> взяты из твоего CV. Если где-то ошибка или чего-то не хватает — скажи.</li>
+  <li><b>Цен нигде нет</b> и пока не планируется.</li>
+  <li><b>Серые прямоугольники</b> на месте обложек или портрета означают, что картинка не загрузилась. Это чинится.</li>
+ </ul>
+ <h3 style="margin-top:34px">Как смотреть</h3>
+ <ul>
+  <li>Ленты фотографий и обложек прокручиваются вбок.</li>
+  <li>Клик по любому снимку или обложке открывает её крупно. Esc или клик — закрыть.</li>
+  <li>Слева внизу есть ссылка «все варианты» — возвращает сюда.</li>
+ </ul>
+</div></section>
+<footer><div class="wrap">Черновик. Собрано Мариной с помощью Claude.</div></footer>
+</body></html>

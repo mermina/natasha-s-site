@@ -25,10 +25,23 @@ PHOTOS = [
  ("Personal work","https://photos.smugmug.com/%C3%93/i-vPmfGSQ/0/LPt4cBVpBjT6TS9j5N5j5FxmC4fz2JfTCbZKJh63Q/X2/DSCF6016-X2.jpg","Ó"),
 ]
 
+LOCAL = {
+ "1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA":"img/mara-cover.jpg",
+ "1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR":"img/skaldreki-cover.jpg",
+ "1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X":"img/maltaka-cover.jpg",
+ "1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz":"img/polifonia-cover.jpg",
+ "1xuNv1bJBMcy7Besaz32hfG1S21Moe-01":"img/magma-cover.jpg",
+ "1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9":"img/odnoi-tsepyu-cover.jpg",
+ "1ffFYhKE6KkFz6YqRhSMbB6yFAg-oTHWe":"img/natasha-portrait.jpg",
+}
+
+def local(fid):
+    return LOCAL.get(fid,"")
+
 def drive(fid, w=1200):
     return "https://drive.google.com/thumbnail?id=%s&sz=w%d" % (fid, w)
 
-PORTRAIT = drive("1ffFYhKE6KkFz6YqRhSMbB6yFAg-oTHWe", 1000)
+PORTRAIT_ID = "1ffFYhKE6KkFz6YqRhSMbB6yFAg-oTHWe"
 
 BOOKS = [
  ("Mara kemur í heimsókn","Poetry","Benedikt, 2025","Maístjarnan 2026","1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA"),
@@ -135,6 +148,7 @@ section:first-of-type{border-top:none}
 .about .body{max-width:60ch}
 footer{padding:60px 0 80px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+.draft a:hover{text-decoration:underline !important}
 .draft{position:fixed;left:0;bottom:0;background:var(--ink);color:var(--paper);
  font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;z-index:50;
  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
@@ -153,9 +167,9 @@ def rail_html():
 def books_html():
     out=[]
     for title,kind,pub,prize,fid in BOOKS:
-        big = drive(fid,1400)
+        big = local(fid) or drive(fid,1400)
         cap = "%s \u2014 %s, %s" % (kind, pub, prize) if prize else "%s \u2014 %s" % (kind, pub)
-        img = '<img loading="lazy" src="%s" alt="" onerror="ph(this)">'%drive(fid,700)
+        img = '<img loading="lazy" src="%s" data-fallback="%s" alt="" onerror="fb(this)">'%(local(fid),drive(fid,700))
         prize_html = '<div class="prize">%s</div>'%prize if prize else ''
         out.append('<figure onclick="lb(this)" data-big="%s" data-title="%s" data-meta="%s">%s'
                    '<figcaption><div class="t">%s</div><div class="m">%s</div><div class="m">%s</div>%s</figcaption></figure>'
@@ -195,11 +209,16 @@ LIGHTBOX = """<div class="lb" id="lb" onclick="this.classList.remove('on')">
 </div>
 
 <script>
+function fb(img){
+  var alt=img.getAttribute('data-fallback');
+  if(alt && img.src.indexOf('drive.google.com')===-1){ img.removeAttribute('data-fallback'); img.src=alt; return; }
+  ph(img);
+}
 function ph(img){
   var f=img.closest('figure');
   var d=document.createElement('div');
   d.className='ph';
-  d.textContent=f.getAttribute('data-title');
+  d.textContent=f?f.getAttribute('data-title'):'';
   img.replaceWith(d);
 }
 function lb(fig){
@@ -223,18 +242,18 @@ WRITING_SECTION = """<section id="writing">
 ABOUT_SECTION = """<section id="about">
   <div class="wrap"><span class="eyebrow">About</span>
     <div class="about" style="margin-top:28px">
-      <img src="%s" alt="Natasha S.">
+      <img src="%s" data-fallback="%s" alt="Natasha S." onerror="fb(this)">
       <div class="body"><h2 style="margin-bottom:18px">Natasha S.</h2><p>%s</p>
       <p class="meta">Reykjav&iacute;k &middot; Icelandic, Russian, English<br>
       <a href="mailto:natasha.s.writer@gmail.com">natasha.s.writer@gmail.com</a></p></div>
     </div>
   </div>
-</section>""" % (PORTRAIT, BIO)
+</section>""" % (local(PORTRAIT_ID), drive(PORTRAIT_ID,1000), BIO)
 
 FOOTER = """<footer><div class="wrap">Natasha S. &mdash; Reykjav&iacute;k &middot;
 <a href="mailto:natasha.s.writer@gmail.com">natasha.s.writer@gmail.com</a> &middot;
 <a href="https://natashas.smugmug.com/">Photo archive</a></div></footer>
-<div class="draft">Draft &mdash; demo build</div>"""
+<div class="draft"><a href="index.html" style="color:inherit;text-decoration:none">&larr; все варианты</a> &middot; черновик</div>"""
 
 # ---------- OPTION A ----------
 A = """<!DOCTYPE html>
