@@ -1,7 +1,23 @@
 # Сайт Наташи — черновики
 
-Папка с прототипами. Все файлы — обычные веб-страницы: открываются двойным щелчком
-в браузере, ничего устанавливать не нужно.
+Репозиторий: https://github.com/mermina/natasha-s-site
+
+## Ссылки для Наташи
+
+Работают только после включения GitHub Pages (Settings → Pages → Source: Deploy from
+a branch → main → / (root) → Save; первая сборка занимает пару минут).
+
+| Ссылка | Что откроется |
+|---|---|
+| https://mermina.github.io/natasha-s-site/ | **Оглавление.** Эту ссылку даём Наташе. Три карточки, пояснения, что здесь черновое |
+| https://mermina.github.io/natasha-s-site/option-a-one-site.html | Вариант A — один сайт с меню сверху |
+| https://mermina.github.io/natasha-s-site/option-b-two-sides.html | Вариант B — вход разделён пополам |
+| https://mermina.github.io/natasha-s-site/books-layouts.html | Сравнение трёх раскладок обложек |
+
+Ссылки на файлы внутри репозитория (github.com/...) открывают исходный код, а не сайт.
+Для показа годятся только адреса вида `mermina.github.io/...`.
+
+Локально всё то же самое открывается двойным щелчком по файлу, начиная с `index.html`.
 
 ## С чего начинать
 
