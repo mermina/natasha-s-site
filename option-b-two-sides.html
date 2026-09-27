@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Natasha S. &mdash; option B, two sides</title>
+<style>
+:root{--paper:#f6f5f2;--ink:#14110f;--muted:#6b6560;--line:#ddd9d2;--accent:#14110f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+ font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{font-weight:400;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(24px,3.2vw,34px);margin-bottom:6px}
+p{margin:0 0 18px}
+section{padding:86px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;max-width:46ch;color:var(--ink)}
+.meta{font-size:14px;color:var(--muted)}
+/* single-line gallery */
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+ padding:6px 28px 26px;scrollbar-width:thin}
+.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:center}
+.rail img{height:64vh;min-height:340px;width:auto;display:block;background:#e9e6e1;color:transparent;min-width:220px}
+.rail figcaption{margin-top:10px;font-size:13px;color:var(--muted);display:flex;
+ justify-content:space-between;gap:16px}
+.rail figcaption .series{letter-spacing:.14em;text-transform:uppercase;font-size:10px;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+.hint{font-size:12px;color:var(--muted);padding:0 28px}
+/* books — rail mirroring the photo rail */
+.rail.books figure{max-width:46vw;cursor:zoom-in}
+.rail figure{cursor:zoom-in}
+.rail.books img{height:52vh;min-height:300px;width:auto;object-fit:contain;background:transparent;
+ box-shadow:0 1px 0 rgba(0,0,0,.08),0 18px 38px -22px rgba(0,0,0,.45);transition:transform .35s}
+.rail.books figure:hover img{transform:translateY(-4px)}
+.rail.books .ph{height:52vh;min-height:300px;width:340px;background:#eceae5;display:flex;
+ align-items:center;justify-content:center;padding:34px;text-align:center;font-size:21px;line-height:1.25}
+.rail.books figcaption{display:block;max-width:340px;margin-top:14px}
+.rail.books figcaption .t{font-size:16px}
+.rail.books figcaption .m{font-size:13px;color:var(--muted);margin-top:2px}
+.rail.books figcaption .prize{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(20,17,15,.94);display:none;z-index:80;
+ align-items:center;justify-content:center;flex-direction:column;gap:22px;padding:5vh 5vw;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-height:74vh;max-width:88vw;object-fit:contain;box-shadow:0 30px 70px -30px #000}
+.lb .cap{color:#f6f5f2;text-align:center;max-width:52ch}
+.lb .cap .m{font-size:13px;opacity:.65;margin-top:4px}
+.lb .x{position:absolute;top:22px;right:28px;color:#f6f5f2;font-size:13px;letter-spacing:.16em;
+ text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;opacity:.7}
+/* writing */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;margin-top:34px}
+.cols ul{list-style:none;margin:14px 0 0;padding:0}
+.cols li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.cols h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+/* about */
+.about{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:56px;align-items:start}
+.about img{width:100%;min-height:380px;display:block;background:#e9e6e1;filter:grayscale(1);color:transparent}
+.about .body{max-width:60ch}
+footer{padding:60px 0 80px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+.draft{position:fixed;left:0;bottom:0;background:var(--ink);color:var(--paper);
+ font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;z-index:50;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+@media(max-width:720px){.about{grid-template-columns:1fr;gap:28px}.rail img{height:46vh;min-height:0}}
+
+.gate{position:fixed;inset:0;display:flex;z-index:60;background:var(--paper)}
+.gate .half{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;
+ justify-content:center;cursor:pointer;transition:flex .55s cubic-bezier(.4,0,.2,1);overflow:hidden}
+.gate .half:hover{flex:1.25}
+.gate .half.photo{background:#14110f;color:#f6f5f2}
+.gate .half.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+ opacity:.5;filter:grayscale(1);transition:opacity .55s}
+.gate .half.photo:hover img{opacity:.72}
+.gate .half .label{position:relative;text-align:center;padding:24px}
+.gate .half h2{font-size:clamp(28px,4.6vw,54px)}
+.gate .half .sub{margin-top:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;opacity:.7}
+.gate .who{position:absolute;top:30px;left:0;right:0;text-align:center;font-size:12px;
+ letter-spacing:.3em;text-transform:uppercase;z-index:2;mix-blend-mode:difference;color:#888}
+.site{display:none}
+.site.on{display:block}
+header.top{position:sticky;top:0;background:rgba(246,245,242,.93);backdrop-filter:blur(8px);
+ border-bottom:1px solid var(--line);z-index:40}
+header.top .wrap{display:flex;justify-content:space-between;align-items:baseline;padding:16px 28px}
+.switch a{margin-left:22px;text-decoration:none;font-size:12px;letter-spacing:.16em;
+ text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+.switch a.on{color:var(--ink);border-bottom:1px solid var(--ink)}
+.name{font-size:16px;letter-spacing:.2em;text-transform:uppercase}
+.hero{padding:96px 0 70px}
+.hero h1{font-size:clamp(34px,6vw,68px);line-height:1.04;max-width:15ch}
+.hero p{margin-top:24px}
+@media(max-width:720px){.gate{flex-direction:column}}
+</style></head><body>
+
+<div class="gate" id="gate">
+  <div class="who">Natasha S.</div>
+  <div class="half photo" onclick="enter('photography')">
+    <img src="https://photos.smugmug.com/Olga-Tokarczuk/i-Dnhv8x4/0/MCznbXnq9zkvr38t78bZq2rw8jXM85wVN9ZpM8JSW/L/DSCF3307-L.jpg" alt="">
+    <div class="label"><h2>Photography</h2><div class="sub">Portraits &middot; readings &middot; events</div></div>
+  </div>
+  <div class="half" onclick="enter('literature')">
+    <div class="label"><h2>Literature</h2><div class="sub">Poetry &middot; essays &middot; translation</div></div>
+  </div>
+</div>
+
+<div class="site" id="site">
+<header class="top"><div class="wrap"><span class="name">Natasha S.</span>
+<nav class="switch"><a href="#" id="tab-photography" onclick="enter('photography');return false">Photography</a><a href="#" id="tab-literature" onclick="enter('literature');return false">Literature</a><a href="#" onclick="document.getElementById('gate').style.display='flex';return false">Entrance</a></nav>
+</div></header>
+
+<div id="side-photography">
+  <section class="hero"><div class="wrap">
+    <h1>Writers, readings, people at home</h1>
+    <p class="lede">Portraits and documentary work in Reykjav&iacute;k. Commissions: portraits,
+    readings and literary events, family sessions at home.</p>
+  </div></section>
+  <section id="photography">
+  <div class="wrap"><span class="eyebrow">Photography</span>
+    <h2>Writers, readings, people at home</h2>
+    <p class="lede">Portraits, literary events and personal series. Commissions taken in Reykjav&iacute;k &mdash; portraits, readings and events, family sessions at home.</p>
+  </div>
+  <div class="rail"><figure onclick="lb(this)" data-big="https://photos.smugmug.com/Masha/i-f45Ks4N/0/MjwG6bckgThmcWb588cpVxTmJ6Gk4zfwG8pJgD485/L/DSCF1171-L.jpg" data-title="Masha" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/Masha/i-f45Ks4N/0/MjwG6bckgThmcWb588cpVxTmJ6Gk4zfwG8pJgD485/L/DSCF1171-L.jpg" alt="Masha"><figcaption><span>Masha</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Jelena/i-CrLDH3D/0/Nb6sfHxKPRNdspMB39Cm96fNC9mXZBVRF4TwBgTQh/L/DSCF0114-L.jpg" data-title="Jelena" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/Jelena/i-CrLDH3D/0/Nb6sfHxKPRNdspMB39Cm96fNC9mXZBVRF4TwBgTQh/L/DSCF0114-L.jpg" alt="Jelena"><figcaption><span>Jelena</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Alina/i-cN35KvW/0/LKPktMcq9P4hXsjMRZqZ97PVGWLGbsTrktGhshmr8/L/DSCF8828-2-L.jpg" data-title="Alina" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/Alina/i-cN35KvW/0/LKPktMcq9P4hXsjMRZqZ97PVGWLGbsTrktGhshmr8/L/DSCF8828-2-L.jpg" alt="Alina"><figcaption><span>Alina</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Nastja/i-wjz58wm/0/LGPc5QBc5QjcFTRJt66wbqDBZPGHTLt5WkwwbPGLj/L/DSCF3643-L.jpg" data-title="Nastja" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/Nastja/i-wjz58wm/0/LGPc5QBc5QjcFTRJt66wbqDBZPGHTLt5WkwwbPGLj/L/DSCF3643-L.jpg" alt="Nastja"><figcaption><span>Nastja</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/El%C3%ADn-%C3%93sk/i-pN666c8/0/MBwsd7gDHr7sQgXnpxFcj3v4nNzRqSK5HfVSFT7gz/L/DSCF7649-L.jpg" data-title="Elín Ósk" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/El%C3%ADn-%C3%93sk/i-pN666c8/0/MBwsd7gDHr7sQgXnpxFcj3v4nNzRqSK5HfVSFT7gz/L/DSCF7649-L.jpg" alt="Elín Ósk"><figcaption><span>Elín Ósk</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Anastasia-studio/i-MbvWPjm/0/NZTFQ9Gj6HwP25jqCwmSczkH9qthzJ2wcNRR9RMvv/X2/DSCF4068-X2.jpg" data-title="Anastasia, studio" data-meta="Portraits"><img loading="lazy" src="https://photos.smugmug.com/Anastasia-studio/i-MbvWPjm/0/NZTFQ9Gj6HwP25jqCwmSczkH9qthzJ2wcNRR9RMvv/X2/DSCF4068-X2.jpg" alt="Anastasia, studio"><figcaption><span>Anastasia, studio</span><span class="series">Portraits</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Olga-Tokarczuk/i-Dnhv8x4/0/MCznbXnq9zkvr38t78bZq2rw8jXM85wVN9ZpM8JSW/L/DSCF3307-L.jpg" data-title="Olga Tokarczuk" data-meta="Literary events"><img loading="lazy" src="https://photos.smugmug.com/Olga-Tokarczuk/i-Dnhv8x4/0/MCznbXnq9zkvr38t78bZq2rw8jXM85wVN9ZpM8JSW/L/DSCF3307-L.jpg" alt="Olga Tokarczuk"><figcaption><span>Olga Tokarczuk</span><span class="series">Literary events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Upplestur-27-mars/i-dzBVNxR/0/MwZPkPRLHNThvhDjnDJsjcjcghhRwCZXx92RGDZbp/X2/DSCF0159-2-X2.jpg" data-title="Upplestur, 27 March" data-meta="Literary events"><img loading="lazy" src="https://photos.smugmug.com/Upplestur-27-mars/i-dzBVNxR/0/MwZPkPRLHNThvhDjnDJsjcjcghhRwCZXx92RGDZbp/X2/DSCF0159-2-X2.jpg" alt="Upplestur, 27 March"><figcaption><span>Upplestur, 27 March</span><span class="series">Literary events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Fischersund-upplestur/i-NJJhxvh/0/KWhdhpR7sgfhMF6L3zHR69SDsF2jzMC2Dhb9hgsDS/XL/DSCF5805-XL.jpg" data-title="Fischersund, reading" data-meta="Literary events"><img loading="lazy" src="https://photos.smugmug.com/Fischersund-upplestur/i-NJJhxvh/0/KWhdhpR7sgfhMF6L3zHR69SDsF2jzMC2Dhb9hgsDS/XL/DSCF5805-XL.jpg" alt="Fischersund, reading"><figcaption><span>Fischersund, reading</span><span class="series">Literary events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Lj%C3%B3%C3%B0sk%C3%B3gur/i-S25NQwP/0/NhKL94fskDBr7vvJTk5qDrKDHZHpgvGNShbtCGDwb/L/DSCF9243-L.jpg" data-title="Ljóðskógur" data-meta="Literary events"><img loading="lazy" src="https://photos.smugmug.com/Lj%C3%B3%C3%B0sk%C3%B3gur/i-S25NQwP/0/NhKL94fskDBr7vvJTk5qDrKDHZHpgvGNShbtCGDwb/L/DSCF9243-L.jpg" alt="Ljóðskógur"><figcaption><span>Ljóðskógur</span><span class="series">Literary events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Extra-Time-Jazz-Band/i-kpGnXv3/0/KVHWPchJgDR8dpvWs3c5xBLFvjP3crfz3dt7d8S4T/L/DSCF6347-L.jpg" data-title="Extra Time Jazz Band" data-meta="Events"><img loading="lazy" src="https://photos.smugmug.com/Extra-Time-Jazz-Band/i-kpGnXv3/0/KVHWPchJgDR8dpvWs3c5xBLFvjP3crfz3dt7d8S4T/L/DSCF6347-L.jpg" alt="Extra Time Jazz Band"><figcaption><span>Extra Time Jazz Band</span><span class="series">Events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Kynvillingagrill/i-hTZkPk5/0/KFTjBnJ2FtLN3T225WS3nwJ2jT3GJW86C4md628bT/L/DSCF0078-L.jpg" data-title="Kynvillingagrill" data-meta="Events"><img loading="lazy" src="https://photos.smugmug.com/Kynvillingagrill/i-hTZkPk5/0/KFTjBnJ2FtLN3T225WS3nwJ2jT3GJW86C4md628bT/L/DSCF0078-L.jpg" alt="Kynvillingagrill"><figcaption><span>Kynvillingagrill</span><span class="series">Events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Vi%C3%B0ey-S%C3%B6guhringur/i-dV5w2wZ/0/McJNThh4HhM74mf3MrmvhccjP9DkQCjxQLQhC8fBF/L/DSCF8187-2-L.jpg" data-title="Viðey, Söguhringur" data-meta="Events"><img loading="lazy" src="https://photos.smugmug.com/Vi%C3%B0ey-S%C3%B6guhringur/i-dV5w2wZ/0/McJNThh4HhM74mf3MrmvhccjP9DkQCjxQLQhC8fBF/L/DSCF8187-2-L.jpg" alt="Viðey, Söguhringur"><figcaption><span>Viðey, Söguhringur</span><span class="series">Events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Fr%C3%AD%C3%B0a-T%C3%B3mas-Eyborg/i-x3jqPpj/0/KsQg6JRPxbB7XpdxL8n7jQ8fPhh5bJhFhCkpwvd72/XL/DSCF0589-3-XL.jpg" data-title="Fríða, Tómas, Eyborg" data-meta="Events"><img loading="lazy" src="https://photos.smugmug.com/Fr%C3%AD%C3%B0a-T%C3%B3mas-Eyborg/i-x3jqPpj/0/KsQg6JRPxbB7XpdxL8n7jQ8fPhh5bJhFhCkpwvd72/XL/DSCF0589-3-XL.jpg" alt="Fríða, Tómas, Eyborg"><figcaption><span>Fríða, Tómas, Eyborg</span><span class="series">Events</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/%D0%94%D0%BE%D0%BC%D0%B0/i-3DvgwRV/0/KmtNZwfpNNcV2r82j3Rk4cP6JK4Q8BxG9mBZS4GZH/XL/DSCF9285-XL.jpg" data-title="Дома" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/%D0%94%D0%BE%D0%BC%D0%B0/i-3DvgwRV/0/KmtNZwfpNNcV2r82j3Rk4cP6JK4Q8BxG9mBZS4GZH/XL/DSCF9285-XL.jpg" alt="Дома"><figcaption><span>Дома</span><span class="series">Personal work</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/H%C3%BAsi%C3%B0/i-hvCbjQH/0/NN9PHsb8FJ6jn2X7r6qXFpghh7pGzfZg2rZZMwKDm/L/DSCF1169-L.jpg" data-title="Húsið" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/H%C3%BAsi%C3%B0/i-hvCbjQH/0/NN9PHsb8FJ6jn2X7r6qXFpghh7pGzfZg2rZZMwKDm/L/DSCF1169-L.jpg" alt="Húsið"><figcaption><span>Húsið</span><span class="series">Personal work</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/K%C3%A6ri-f%C3%A1viti/i-VwBpmGL/0/MFWq6fGC9Fkd3NwGhKRMZvqpXt3XNv8VwmR5LBnxx/XL/DSCF8803-2-XL.jpg" data-title="Kæri fáviti" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/K%C3%A6ri-f%C3%A1viti/i-VwBpmGL/0/MFWq6fGC9Fkd3NwGhKRMZvqpXt3XNv8VwmR5LBnxx/XL/DSCF8803-2-XL.jpg" alt="Kæri fáviti"><figcaption><span>Kæri fáviti</span><span class="series">Personal work</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Ertu-a%C3%B0-hugsa-um-t%C3%ADmann/i-5kRGbRt/0/MwfVTkZ5R5J5ffVFXvfBDsJrBVStDmQj5CX2FWTkL/L/DSCF9742-L.jpg" data-title="Ertu að hugsa um tímann" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/Ertu-a%C3%B0-hugsa-um-t%C3%ADmann/i-5kRGbRt/0/MwfVTkZ5R5J5ffVFXvfBDsJrBVStDmQj5CX2FWTkL/L/DSCF9742-L.jpg" alt="Ertu að hugsa um tímann"><figcaption><span>Ertu að hugsa um tímann</span><span class="series">Personal work</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/Undanbr%C3%B6g%C3%B0/i-nhggQt6/0/NgqV8Q7LMJP5g6cNvmZMDHKwGFhZDkFvH5qnv6pVb/L/DSCF1442-L.jpg" data-title="Undanbrögð" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/Undanbr%C3%B6g%C3%B0/i-nhggQt6/0/NgqV8Q7LMJP5g6cNvmZMDHKwGFhZDkFvH5qnv6pVb/L/DSCF1442-L.jpg" alt="Undanbrögð"><figcaption><span>Undanbrögð</span><span class="series">Personal work</span></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://photos.smugmug.com/%C3%93/i-vPmfGSQ/0/LPt4cBVpBjT6TS9j5N5j5FxmC4fz2JfTCbZKJh63Q/X2/DSCF6016-X2.jpg" data-title="Ó" data-meta="Personal work"><img loading="lazy" src="https://photos.smugmug.com/%C3%93/i-vPmfGSQ/0/LPt4cBVpBjT6TS9j5N5j5FxmC4fz2JfTCbZKJh63Q/X2/DSCF6016-X2.jpg" alt="Ó"><figcaption><span>Ó</span><span class="series">Personal work</span></figcaption></figure></div>
+  <p class="hint">Scroll sideways. Full archive: <a href="https://natashas.smugmug.com/">natashas.smugmug.com</a></p>
+</section>
+  <section id="about">
+  <div class="wrap"><span class="eyebrow">About</span>
+    <div class="about" style="margin-top:28px">
+      <img src="https://drive.google.com/thumbnail?id=1ffFYhKE6KkFz6YqRhSMbB6yFAg-oTHWe&sz=w1000" alt="Natasha S.">
+      <div class="body"><h2 style="margin-bottom:18px">Natasha S.</h2><p>Natasha S. is a poet, translator, journalist and editor. Born in Russia, she has
+lived in Iceland since 2012. She holds a BA in journalism from Moscow and a BA in Icelandic as
+a second language, with Swedish, from the University of Iceland.
+Her first collection of poetry, <em>Máltaka á stríðstímum</em> (2022), received the
+Tómas Guðmundsson Literary Prize and was nominated for the Maístjarnan Award. Her second,
+<em>Mara kemur í heimsókn</em> (2025), won the Maístjarnan Award in 2026. She edited and
+co-authored two anthologies of writing by authors of foreign origin, and in 2023 received
+the Icelandic Language Committee's recognition for extending Icelandic as a literary language
+to those who did not grow up with it. She photographs writers, readings and people at home.</p>
+      <p class="meta">Reykjav&iacute;k &middot; Icelandic, Russian, English<br>
+      <a href="mailto:natasha.s.writer@gmail.com">natasha.s.writer@gmail.com</a></p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div id="side-literature">
+  <section class="hero"><div class="wrap">
+    <h1>Poet, translator, editor</h1>
+    <p class="lede">Two poetry collections in Icelandic, two edited anthologies, and translation
+    from Icelandic into Russian.</p>
+  </div></section>
+  <section id="books">
+  <div class="wrap"><span class="eyebrow">Books</span>
+    <h2>Poetry, anthologies, translation</h2>
+  </div>
+  <div class="rail books"><figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w1400" data-title="Mara kemur í heimsókn" data-meta="Poetry — Benedikt, 2025, Maístjarnan 2026"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Mara kemur í heimsókn</div><div class="m">Poetry</div><div class="m">Benedikt, 2025</div><div class="prize">Maístjarnan 2026</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w1400" data-title="Skáldreki // Writers adrift" data-meta="Essays — editor, co-author — Una útgáfuhús, 2023"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Skáldreki // Writers adrift</div><div class="m">Essays — editor, co-author</div><div class="m">Una útgáfuhús, 2023</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w1400" data-title="Máltaka á stríðstímum" data-meta="Poetry — Una útgáfuhús, 2022, Tómas Guðmundsson Prize 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Máltaka á stríðstímum</div><div class="m">Poetry</div><div class="m">Una útgáfuhús, 2022</div><div class="prize">Tómas Guðmundsson Prize 2022</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w1400" data-title="Polífonía af erlendum uppruna" data-meta="Poetry anthology — editor, co-author — Una útgáfuhús, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Polífonía af erlendum uppruna</div><div class="m">Poetry anthology — editor, co-author</div><div class="m">Una útgáfuhús, 2021</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w1400" data-title="Магма / Kvika" data-meta="Translation of Þóra Hjörleifsdóttir — Дримбук, 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Магма / Kvika</div><div class="m">Translation of Þóra Hjörleifsdóttir</div><div class="m">Дримбук, 2022</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w1400" data-title="Одной цепью" data-meta="Short story — «Ис в эфтирретт» — Есть смысл, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Одной цепью</div><div class="m">Short story — «Ис в эфтирретт»</div><div class="m">Есть смысл, 2021</div></figcaption></figure></div>
+  <p class="hint">Scroll sideways · click a cover to see it whole</p>
+</section>
+
+
+  <section id="writing">
+  <div class="wrap"><span class="eyebrow">Writing</span>
+    <h2>Published work</h2>
+    <div class="cols"><div><h3>Journalism &amp; essays</h3><ul><li>Heimildin — columns, 2023–2024</li><li>Víðsjá (RÚV) — columns, 2022</li><li>Tímarit Máls og menningar — poetry and essays, 2022–2025</li><li>Iceland Review — poetry in English, 2023</li><li>Ós pressan — poetry, 2022, 2025</li><li>stelkur.is — 2026</li><li>gorky.media, batenka.ru, literatice.ru — essays in Russian, 2019–2021</li></ul></div>
+<div><h3>Translation from Icelandic</h3><ul><li>Kristín Eiríksdóttir, <em>Tól</em> — into Russian, 2025 (unpublished)</li><li>Þóra Hjörleifsdóttir, <em>Kvika</em> — into Russian, Дримбук, 2022</li><li>Einar Kári Jóhannesson, «Mávurinn» — into Russian, 2022</li><li>Eva Rún Snorradóttir — poetry, into Russian, 2021</li></ul></div>
+<div><h3>Her work in translation</h3><ul><li>German — <em>Ein Alb kommt zu Besuch</em>, ELIF Verlag, 2027 (forthcoming)</li><li>Swedish — <em>Mara kommer på besök</em>, Ramús förlag, 2026, translated by the author</li><li>Italian — poems in <em>Internazionale</em>, 2026</li><li>English — essay on Literary Hub, 2023, tr. Larissa Kyzer</li></ul></div></div>
+  </div>
+</section>
+  <section id="about">
+  <div class="wrap"><span class="eyebrow">About</span>
+    <div class="about" style="margin-top:28px">
+      <img src="https://drive.google.com/thumbnail?id=1ffFYhKE6KkFz6YqRhSMbB6yFAg-oTHWe&sz=w1000" alt="Natasha S.">
+      <div class="body"><h2 style="margin-bottom:18px">Natasha S.</h2><p>Natasha S. is a poet, translator, journalist and editor. Born in Russia, she has
+lived in Iceland since 2012. She holds a BA in journalism from Moscow and a BA in Icelandic as
+a second language, with Swedish, from the University of Iceland.
+Her first collection of poetry, <em>Máltaka á stríðstímum</em> (2022), received the
+Tómas Guðmundsson Literary Prize and was nominated for the Maístjarnan Award. Her second,
+<em>Mara kemur í heimsókn</em> (2025), won the Maístjarnan Award in 2026. She edited and
+co-authored two anthologies of writing by authors of foreign origin, and in 2023 received
+the Icelandic Language Committee's recognition for extending Icelandic as a literary language
+to those who did not grow up with it. She photographs writers, readings and people at home.</p>
+      <p class="meta">Reykjav&iacute;k &middot; Icelandic, Russian, English<br>
+      <a href="mailto:natasha.s.writer@gmail.com">natasha.s.writer@gmail.com</a></p></div>
+    </div>
+  </div>
+</section>
+</div>
+<footer><div class="wrap">Natasha S. &mdash; Reykjav&iacute;k &middot;
+<a href="mailto:natasha.s.writer@gmail.com">natasha.s.writer@gmail.com</a> &middot;
+<a href="https://natashas.smugmug.com/">Photo archive</a></div></footer>
+<div class="draft">Draft &mdash; demo build</div>
+</div>
+<div class="lb" id="lb" onclick="this.classList.remove('on')">
+  <span class="x">Close</span>
+  <img id="lb-img" src="" alt="">
+  <div class="cap"><div id="lb-title"></div><div class="m" id="lb-meta"></div></div>
+</div>
+
+<script>
+function ph(img){
+  var f=img.closest('figure');
+  var d=document.createElement('div');
+  d.className='ph';
+  d.textContent=f.getAttribute('data-title');
+  img.replaceWith(d);
+}
+function lb(fig){
+  var big=fig.getAttribute('data-big');
+  if(!fig.querySelector('img')) return;
+  document.getElementById('lb-img').src=big;
+  document.getElementById('lb-title').textContent=fig.getAttribute('data-title');
+  document.getElementById('lb-meta').textContent=fig.getAttribute('data-meta');
+  document.getElementById('lb').classList.add('on');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var l=document.getElementById('lb');if(l)l.classList.remove('on');}});
+</script>
+
+<script>
+function enter(side){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('site').classList.add('on');
+  var p=side==='photography';
+  document.getElementById('side-photography').style.display=p?'block':'none';
+  document.getElementById('side-literature').style.display=p?'none':'block';
+  document.getElementById('tab-photography').className=p?'on':'';
+  document.getElementById('tab-literature').className=p?'':'on';
+  window.scrollTo(0,0);
+}
+</script>
+</body></html>

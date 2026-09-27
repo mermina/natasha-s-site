@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Books — three layouts</title>
+<style>
+:root{--paper:#f6f5f2;--ink:#14110f;--muted:#6b6560;--line:#ddd9d2;--accent:#14110f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+ font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{font-weight:400;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(24px,3.2vw,34px);margin-bottom:6px}
+p{margin:0 0 18px}
+section{padding:86px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;max-width:46ch;color:var(--ink)}
+.meta{font-size:14px;color:var(--muted)}
+/* single-line gallery */
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+ padding:6px 28px 26px;scrollbar-width:thin}
+.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:center}
+.rail img{height:64vh;min-height:340px;width:auto;display:block;background:#e9e6e1;color:transparent;min-width:220px}
+.rail figcaption{margin-top:10px;font-size:13px;color:var(--muted);display:flex;
+ justify-content:space-between;gap:16px}
+.rail figcaption .series{letter-spacing:.14em;text-transform:uppercase;font-size:10px;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+.hint{font-size:12px;color:var(--muted);padding:0 28px}
+/* books — rail mirroring the photo rail */
+.rail.books figure{max-width:46vw;cursor:zoom-in}
+.rail figure{cursor:zoom-in}
+.rail.books img{height:52vh;min-height:300px;width:auto;object-fit:contain;background:transparent;
+ box-shadow:0 1px 0 rgba(0,0,0,.08),0 18px 38px -22px rgba(0,0,0,.45);transition:transform .35s}
+.rail.books figure:hover img{transform:translateY(-4px)}
+.rail.books .ph{height:52vh;min-height:300px;width:340px;background:#eceae5;display:flex;
+ align-items:center;justify-content:center;padding:34px;text-align:center;font-size:21px;line-height:1.25}
+.rail.books figcaption{display:block;max-width:340px;margin-top:14px}
+.rail.books figcaption .t{font-size:16px}
+.rail.books figcaption .m{font-size:13px;color:var(--muted);margin-top:2px}
+.rail.books figcaption .prize{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(20,17,15,.94);display:none;z-index:80;
+ align-items:center;justify-content:center;flex-direction:column;gap:22px;padding:5vh 5vw;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-height:74vh;max-width:88vw;object-fit:contain;box-shadow:0 30px 70px -30px #000}
+.lb .cap{color:#f6f5f2;text-align:center;max-width:52ch}
+.lb .cap .m{font-size:13px;opacity:.65;margin-top:4px}
+.lb .x{position:absolute;top:22px;right:28px;color:#f6f5f2;font-size:13px;letter-spacing:.16em;
+ text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;opacity:.7}
+/* writing */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;margin-top:34px}
+.cols ul{list-style:none;margin:14px 0 0;padding:0}
+.cols li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.cols h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+/* about */
+.about{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:56px;align-items:start}
+.about img{width:100%;min-height:380px;display:block;background:#e9e6e1;filter:grayscale(1);color:transparent}
+.about .body{max-width:60ch}
+footer{padding:60px 0 80px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+.draft{position:fixed;left:0;bottom:0;background:var(--ink);color:var(--paper);
+ font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;z-index:50;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+@media(max-width:720px){.about{grid-template-columns:1fr;gap:28px}.rail img{height:46vh;min-height:0}}
+
+.mosaic{display:flex;flex-wrap:wrap;gap:60px 56px;align-items:flex-start;margin-top:40px}
+.mosaic figure{margin:0;cursor:zoom-in}
+.mosaic img{width:100%;height:auto;display:block;color:transparent;background:transparent;
+ box-shadow:0 1px 0 rgba(0,0,0,.08),0 22px 44px -26px rgba(0,0,0,.5);transition:transform .35s}
+.mosaic figure:hover img{transform:translateY(-5px)}
+.mosaic .ph{width:100%;aspect-ratio:2/3;background:#eceae5;display:flex;align-items:center;
+ justify-content:center;padding:26px;text-align:center;font-size:19px;line-height:1.25}
+.mosaic figcaption{margin-top:14px}
+.mosaic figcaption .t{font-size:16px}
+.mosaic figcaption .m{font-size:13px;color:var(--muted);margin-top:2px}
+.mosaic figcaption .prize{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+.w-l{flex:0 0 340px}.w-m{flex:0 0 260px}.w-s{flex:0 0 200px}
+.off-1{margin-top:52px}.off-2{margin-top:104px}.off-3{margin-top:150px}
+.asym{display:grid;grid-template-columns:repeat(12,1fr);gap:34px;margin-top:44px}
+.asym figure{margin:0;cursor:zoom-in}
+.asym img{width:100%;height:auto;min-height:340px;object-fit:contain;display:block;color:transparent;background:transparent;
+ box-shadow:0 1px 0 rgba(0,0,0,.08),0 26px 50px -28px rgba(0,0,0,.5);transition:transform .35s}
+.asym figure:hover img{transform:translateY(-6px)}
+.asym .ph{width:100%;aspect-ratio:2/3;background:#eceae5;display:flex;align-items:center;
+ justify-content:center;padding:30px;text-align:center;font-size:22px;line-height:1.25}
+.asym figcaption{margin-top:16px}
+.asym figcaption .t{font-size:17px}
+.asym figcaption .m{font-size:13px;color:var(--muted);margin-top:2px}
+.asym figcaption .prize{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+@media(max-width:820px){.asym{grid-template-columns:1fr}.asym figure{grid-column:1/-1 !important;margin-top:0 !important}}
+.switchbar{position:sticky;top:0;background:rgba(246,245,242,.94);backdrop-filter:blur(8px);
+ border-bottom:1px solid var(--line);z-index:40;padding:14px 28px;display:flex;gap:26px;align-items:baseline}
+.switchbar a{text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+ font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:var(--muted)}
+.switchbar a.on{color:var(--ink);border-bottom:1px solid var(--ink)}
+@media(max-width:720px){.w-l,.w-m,.w-s{flex:0 0 46%;}.off-1,.off-2,.off-3{margin-top:0}}
+</style></head><body>
+<div class="switchbar"><strong style="font-size:13px;letter-spacing:.2em;text-transform:uppercase">Books — three layouts</strong>
+<a href="#" id="t1" class="on" onclick="show(1);return false">1 · Rail</a>
+<a href="#" id="t2" onclick="show(2);return false">2 · Staggered</a>
+<a href="#" id="t3" onclick="show(3);return false">3 · Asymmetric, all large</a></div>
+
+<div id="v1">
+<section><div class="wrap"><span class="eyebrow">Layout 1</span>
+<h2>One line, scrolled sideways</h2>
+<p class="lede">Mirrors the photography rail: same gesture, same rhythm. Covers whole, never cropped.
+Click a cover to see it large.</p></div>
+<div class="rail books"><figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w1400" data-title="Mara kemur í heimsókn" data-meta="Poetry — Benedikt, 2025, Maístjarnan 2026"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Mara kemur í heimsókn</div><div class="m">Poetry</div><div class="m">Benedikt, 2025</div><div class="prize">Maístjarnan 2026</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w1400" data-title="Skáldreki // Writers adrift" data-meta="Essays — editor, co-author — Una útgáfuhús, 2023"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Skáldreki // Writers adrift</div><div class="m">Essays — editor, co-author</div><div class="m">Una útgáfuhús, 2023</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w1400" data-title="Máltaka á stríðstímum" data-meta="Poetry — Una útgáfuhús, 2022, Tómas Guðmundsson Prize 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Máltaka á stríðstímum</div><div class="m">Poetry</div><div class="m">Una útgáfuhús, 2022</div><div class="prize">Tómas Guðmundsson Prize 2022</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w1400" data-title="Polífonía af erlendum uppruna" data-meta="Poetry anthology — editor, co-author — Una útgáfuhús, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Polífonía af erlendum uppruna</div><div class="m">Poetry anthology — editor, co-author</div><div class="m">Una útgáfuhús, 2021</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w1400" data-title="Магма / Kvika" data-meta="Translation of Þóra Hjörleifsdóttir — Дримбук, 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Магма / Kvika</div><div class="m">Translation of Þóra Hjörleifsdóttir</div><div class="m">Дримбук, 2022</div></figcaption></figure>
+<figure onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w1400" data-title="Одной цепью" data-meta="Short story — «Ис в эфтирретт» — Есть смысл, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w700" alt="" onerror="ph(this)"><figcaption><div class="t">Одной цепью</div><div class="m">Short story — «Ис в эфтирретт»</div><div class="m">Есть смысл, 2021</div></figcaption></figure></div>
+<p class="hint">Scroll sideways · click a cover to see it whole</p>
+</section></div>
+
+<div id="v2" style="display:none">
+<section><div class="wrap"><span class="eyebrow">Layout 2</span>
+<h2>Staggered, not in a row</h2>
+<p class="lede">Covers at different sizes and heights, the way books sit on a table rather than on a shelf.
+Nothing is cropped; click a cover to see it large.</p>
+<div class="mosaic"><figure class="w-l off-0" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w1400" data-title="Mara kemur í heimsókn" data-meta="Poetry — Benedikt, 2025, Maístjarnan 2026"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Mara kemur í heimsókn</div><div class="m">Poetry</div><div class="m">Benedikt, 2025</div><div class="prize">Maístjarnan 2026</div></figcaption></figure>
+<figure class="w-s off-3" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w1400" data-title="Skáldreki // Writers adrift" data-meta="Essays — editor, co-author — Una útgáfuhús, 2023"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Skáldreki // Writers adrift</div><div class="m">Essays — editor, co-author</div><div class="m">Una útgáfuhús, 2023</div></figcaption></figure>
+<figure class="w-m off-1" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w1400" data-title="Máltaka á stríðstímum" data-meta="Poetry — Una útgáfuhús, 2022, Tómas Guðmundsson Prize 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Máltaka á stríðstímum</div><div class="m">Poetry</div><div class="m">Una útgáfuhús, 2022</div><div class="prize">Tómas Guðmundsson Prize 2022</div></figcaption></figure>
+<figure class="w-l off-2" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w1400" data-title="Polífonía af erlendum uppruna" data-meta="Poetry anthology — editor, co-author — Una útgáfuhús, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Polífonía af erlendum uppruna</div><div class="m">Poetry anthology — editor, co-author</div><div class="m">Una útgáfuhús, 2021</div></figcaption></figure>
+<figure class="w-s off-0" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w1400" data-title="Магма / Kvika" data-meta="Translation of Þóra Hjörleifsdóttir — Дримбук, 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Магма / Kvika</div><div class="m">Translation of Þóra Hjörleifsdóttir</div><div class="m">Дримбук, 2022</div></figcaption></figure>
+<figure class="w-m off-2" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w1400" data-title="Одной цепью" data-meta="Short story — «Ис в эфтирретт» — Есть смысл, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w800" alt="" onerror="ph(this)"><figcaption><div class="t">Одной цепью</div><div class="m">Short story — «Ис в эфтирретт»</div><div class="m">Есть смысл, 2021</div></figcaption></figure></div></div>
+</section></div>
+<div id="v3" style="display:none">
+<section><div class="wrap"><span class="eyebrow">Layout 3</span>
+<h2>Asymmetric, every cover large</h2>
+<p class="lede">Same refusal of the grid as layout 2, but nothing is shrunk: each cover is given
+real size and its own position on the page. Click a cover to see it larger still.</p>
+<div class="asym"><figure style="grid-column:1 / span 5;margin-top:0px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w1400" data-title="Mara kemur í heimsókn" data-meta="Poetry — Benedikt, 2025, Maístjarnan 2026"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Mara kemur í heimsókn</div><div class="m">Poetry</div><div class="m">Benedikt, 2025</div><div class="prize">Maístjarnan 2026</div></figcaption></figure>
+<figure style="grid-column:7 / span 6;margin-top:90px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w1400" data-title="Skáldreki // Writers adrift" data-meta="Essays — editor, co-author — Una útgáfuhús, 2023"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Skáldreki // Writers adrift</div><div class="m">Essays — editor, co-author</div><div class="m">Una útgáfuhús, 2023</div></figcaption></figure>
+<figure style="grid-column:2 / span 5;margin-top:40px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w1400" data-title="Máltaka á stríðstímum" data-meta="Poetry — Una útgáfuhús, 2022, Tómas Guðmundsson Prize 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Máltaka á stríðstímum</div><div class="m">Poetry</div><div class="m">Una útgáfuhús, 2022</div><div class="prize">Tómas Guðmundsson Prize 2022</div></figcaption></figure>
+<figure style="grid-column:8 / span 5;margin-top:140px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w1400" data-title="Polífonía af erlendum uppruna" data-meta="Poetry anthology — editor, co-author — Una útgáfuhús, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Polífonía af erlendum uppruna</div><div class="m">Poetry anthology — editor, co-author</div><div class="m">Una útgáfuhús, 2021</div></figcaption></figure>
+<figure style="grid-column:1 / span 5;margin-top:40px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w1400" data-title="Магма / Kvika" data-meta="Translation of Þóra Hjörleifsdóttir — Дримбук, 2022"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Магма / Kvika</div><div class="m">Translation of Þóra Hjörleifsdóttir</div><div class="m">Дримбук, 2022</div></figcaption></figure>
+<figure style="grid-column:7 / span 6;margin-top:110px" onclick="lb(this)" data-big="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w1400" data-title="Одной цепью" data-meta="Short story — «Ис в эфтирретт» — Есть смысл, 2021"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w1000" alt="" onerror="ph(this)"><figcaption><div class="t">Одной цепью</div><div class="m">Short story — «Ис в эфтирретт»</div><div class="m">Есть смысл, 2021</div></figcaption></figure></div></div>
+</section></div>
+<div class="lb" id="lb" onclick="this.classList.remove('on')">
+  <span class="x">Close</span>
+  <img id="lb-img" src="" alt="">
+  <div class="cap"><div id="lb-title"></div><div class="m" id="lb-meta"></div></div>
+</div>
+
+<script>
+function ph(img){
+  var f=img.closest('figure');
+  var d=document.createElement('div');
+  d.className='ph';
+  d.textContent=f.getAttribute('data-title');
+  img.replaceWith(d);
+}
+function lb(fig){
+  var big=fig.getAttribute('data-big');
+  if(!fig.querySelector('img')) return;
+  document.getElementById('lb-img').src=big;
+  document.getElementById('lb-title').textContent=fig.getAttribute('data-title');
+  document.getElementById('lb-meta').textContent=fig.getAttribute('data-meta');
+  document.getElementById('lb').classList.add('on');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var l=document.getElementById('lb');if(l)l.classList.remove('on');}});
+</script>
+<script>
+function show(n){
+ for(var i=1;i<=3;i++){
+   document.getElementById('v'+i).style.display=(n===i)?'block':'none';
+   document.getElementById('t'+i).className=(n===i)?'on':'';
+ }
+ window.scrollTo(0,0);
+}
+</script>
+<div class="draft">Draft — demo build</div>
+</body></html>
