@@ -69,12 +69,12 @@ EXTRA = """
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Books — three layouts</title>
+<title>Option C — books, three layouts</title>
 <style>%s%s</style></head><body>
-<div class="switchbar"><strong style="font-size:13px;letter-spacing:.2em;text-transform:uppercase">Books — three layouts</strong>
-<a href="#" id="t1" class="on" onclick="show(1);return false">1 · Rail</a>
-<a href="#" id="t2" onclick="show(2);return false">2 · Staggered</a>
-<a href="#" id="t3" onclick="show(3);return false">3 · Asymmetric, all large</a></div>
+<div class="switchbar"><strong style="font-size:13px;letter-spacing:.2em;text-transform:uppercase">Option C — books, three layouts</strong>
+<a href="#rail" id="t1" class="on" onclick="show(1);return false">1 · Rail</a>
+<a href="#staggered" id="t2" onclick="show(2);return false">2 · Staggered</a>
+<a href="#asymmetric" id="t3" onclick="show(3);return false">3 · Asymmetric, all large</a></div>
 
 <div id="v1">
 <section><div class="wrap"><span class="eyebrow">Layout 1</span>
@@ -101,13 +101,23 @@ real size and its own position on the page. Click a cover to see it larger still
 </section></div>
 %s
 <script>
-function show(n){
+var HASHES=['#rail','#staggered','#asymmetric'];
+function show(n,keepHash){
  for(var i=1;i<=3;i++){
    document.getElementById('v'+i).style.display=(n===i)?'block':'none';
    document.getElementById('t'+i).className=(n===i)?'on':'';
  }
+ if(!keepHash && history.replaceState) history.replaceState(null,'',HASHES[n-1]);
  window.scrollTo(0,0);
 }
+(function(){
+ var i=HASHES.indexOf(location.hash);
+ if(i>-1) show(i+1,true);
+})();
+window.addEventListener('hashchange',function(){
+ var i=HASHES.indexOf(location.hash);
+ if(i>-1) show(i+1,true);
+});
 </script>
 <div class="draft"><a href="index.html" style="color:inherit;text-decoration:none">← все варианты</a> · черновик</div>
 </body></html>""" % (b.CSS, EXTRA, b.books_html(), mosaic_html(), asym_html(), b.LIGHTBOX)

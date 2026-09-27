@@ -4,15 +4,26 @@
 
 ## Ссылки для Наташи
 
-Работают только после включения GitHub Pages (Settings → Pages → Source: Deploy from
-a branch → main → / (root) → Save; первая сборка занимает пару минут).
+GitHub Pages включён (main, папка /root), ссылки рабочие. После каждого пуша сайт
+пересобирается за минуту-две.
 
 | Ссылка | Что откроется |
 |---|---|
-| https://mermina.github.io/natasha-s-site/ | **Оглавление.** Эту ссылку даём Наташе. Три карточки, пояснения, что здесь черновое |
-| https://mermina.github.io/natasha-s-site/option-a-one-site.html | Вариант A — один сайт с меню сверху |
-| https://mermina.github.io/natasha-s-site/option-b-two-sides.html | Вариант B — вход разделён пополам |
-| https://mermina.github.io/natasha-s-site/books-layouts.html | Сравнение трёх раскладок обложек |
+| https://mermina.github.io/natasha-s-site/ | **Оглавление.** Эту ссылку даём Наташе — с неё открываются все три варианта |
+| https://mermina.github.io/natasha-s-site/option-a-one-site.html | **Вариант A — один сайт.** Меню сверху: Books / Photography / Writing / About, всё на одной странице |
+| https://mermina.github.io/natasha-s-site/option-b-two-sides.html | **Вариант B — две половины.** Вход разделён пополам: слева фотография, справа литература. Надо кликнуть на одну из половин, дальше сверху переключатель и ссылка Entrance обратно на вход |
+| https://mermina.github.io/natasha-s-site/books-layouts.html | **Вариант C — три раскладки книг.** Не сайт, а сравнение. Сверху три вкладки, по каждой надо нажать (ссылки ниже открывают их сразу) |
+
+Вкладки внутри варианта C:
+
+| Ссылка | Раскладка |
+|---|---|
+| https://mermina.github.io/natasha-s-site/books-layouts.html#rail | **1 · Rail** — обложки одной строкой, прокрутка вбок, зеркало фотоленты |
+| https://mermina.github.io/natasha-s-site/books-layouts.html#staggered | **2 · Staggered** — разного размера и высоты, как книги на столе |
+| https://mermina.github.io/natasha-s-site/books-layouts.html#asymmetric | **3 · Asymmetric, all large** — без сетки, но все обложки крупные |
+
+На всех страницах: ленты прокручиваются вбок, клик по снимку или обложке открывает её во весь
+экран, Esc закрывает, слева внизу ссылка «все варианты» возвращает в оглавление.
 
 Ссылки на файлы внутри репозитория (github.com/...) открывают исходный код, а не сайт.
 Для показа годятся только адреса вида `mermina.github.io/...`.
@@ -32,7 +43,7 @@ a branch → main → / (root) → Save; первая сборка занима�
 | `index.html` | Оглавление и пояснения для Наташи | — |
 | `option-a-one-site.html` | Вариант A: один сайт, меню сверху (Books / Photography / Writing / About), всё на одной странице | Хватает ли обычной навигации |
 | `option-b-two-sides.html` | Вариант B: вход разделён пополам, слева фотография, справа литература; после выбора сверху остаётся переключатель и ссылка Entrance обратно | Нужен ли разделённый вход |
-| `books-layouts.html` | Сравнение трёх раскладок обложек: 1 — лентой, 2 — разного размера и высоты, 3 — без сетки, но все крупные | Какую раскладку книг ставим в сайт |
+| `books-layouts.html` | Вариант C: три вкладки с раскладками обложек — Rail, Staggered, Asymmetric | Какую раскладку книг ставим в сайт |
 
 Со всех трёх страниц слева внизу есть ссылка «все варианты» — возврат на `index.html`.
 Поэтому папку нужно отправлять целиком, а не отдельными файлами.
