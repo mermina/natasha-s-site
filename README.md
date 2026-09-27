@@ -14,14 +14,6 @@ GitHub Pages включён (main, папка /root), ссылки рабочи�
 | https://mermina.github.io/natasha-s-site/option-b-two-sides.html | **Вариант B — две половины.** Вход разделён пополам: слева фотография, справа литература. Надо кликнуть на одну из половин, дальше сверху переключатель и ссылка Entrance обратно на вход |
 | https://mermina.github.io/natasha-s-site/books-layouts.html | **Вариант C — три раскладки книг.** Не сайт, а сравнение. Сверху три вкладки, по каждой надо нажать (ссылки ниже открывают их сразу) |
 
-Вкладки внутри варианта C:
-
-| Ссылка | Раскладка |
-|---|---|
-| https://mermina.github.io/natasha-s-site/books-layouts.html#rail | **1 · Rail** — обложки одной строкой, прокрутка вбок, зеркало фотоленты |
-| https://mermina.github.io/natasha-s-site/books-layouts.html#staggered | **2 · Staggered** — разного размера и высоты, как книги на столе |
-| https://mermina.github.io/natasha-s-site/books-layouts.html#asymmetric | **3 · Asymmetric, all large** — без сетки, но все обложки крупные |
-
 На всех страницах: ленты прокручиваются вбок, клик по снимку или обложке открывает её во весь
 экран, Esc закрывает, слева внизу ссылка «все варианты» возвращает в оглавление.
 
