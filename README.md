@@ -13,7 +13,7 @@ Natasha edits the content in **Pages CMS**; the design lives in `templates/` and
 | `build.py` | content + templates → `_site/`, resizes photos | Marina |
 | `.pages.yml` | what Natasha sees in the editor | Marina |
 | `.github/workflows/deploy.yml` | rebuild + publish on every save | — |
-| `legacy/` | the 26 Sept prototypes (options A/B/C) | archive |
+| `design/` | private, not pushed: logo, previews, 26 Sept prototypes | Marina |
 
 ## Build locally
 
