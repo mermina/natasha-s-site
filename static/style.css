@@ -122,3 +122,9 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 .variant{position:fixed;right:0;bottom:0;z-index:60;background:var(--ink);color:var(--paper);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px}
 .variant a{color:var(--paper);opacity:.55;margin-left:12px;text-decoration:none}
 .variant a.on{opacity:1;border-bottom:1px solid var(--paper)}
+
+.about.solo .body{max-width:none}
+.about.solo .body p{max-width:62ch}
+.about h1{white-space:nowrap}
+@media(max-width:720px){.about h1{white-space:normal}}
+.about h1{font-size:clamp(30px,4.2vw,56px)}
