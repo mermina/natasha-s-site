@@ -126,6 +126,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 .about.solo .body{max-width:none}
 .about.solo .body p{max-width:62ch}
 .about h1{font-size:clamp(30px,4.2vw,56px)}
-/* heading: name + offset italic role (option 3) */
-.about h1{margin-bottom:0}
-.about .role{font-family:Lora,Georgia,serif;font-style:italic;color:var(--muted);font-size:clamp(22px,2.6vw,34px);line-height:1.2;margin:6px 0 26px 3.2em}
+/* heading: name + role on one line (option 1) — literature: italic; photography: spaced capitals */
+.about h1.named{margin-bottom:26px}
+.named .role{margin-left:.35em;white-space:nowrap}
+.named .role.literature{font-family:Lora,Georgia,serif;font-style:italic;color:var(--muted);font-size:.74em}
+.named .role.literature .amp{color:#a39c94;font-size:1.12em}
+.named .role.photography{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);vertical-align:.9em;margin-left:1.2em}
+@media(max-width:720px){.named .role{display:block;margin:8px 0 0}.named .role.photography{vertical-align:baseline}}

@@ -3,7 +3,7 @@
 {% block content %}
 <section class="first"><div class="wrap">
   <div class="about {{ 'right' if about.image else 'solo' }}">
-    <div class="body"><h1>{{ about.heading }}</h1>{% if about.role %}<div class="role">{{ about.role }}</div>{% endif %}{{ about.html }}</div>
+    <div class="body"><h1 class="named">{{ about.heading }}{% if about.role %} <span class="role {{ side }}">{{ about.role|replace("&", "<span class=\"amp\">&amp;</span>")|safe if side=="literature" else about.role }}</span>{% endif %}</h1>{{ about.html }}</div>
     {% if about.image %}<div class="img"><img src="{{ about.image|img(900) }}" alt=""></div>{% endif %}
   </div>
 </div>

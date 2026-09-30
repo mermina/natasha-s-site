@@ -21,7 +21,7 @@ content:
     format: yaml-frontmatter
     fields:
       - { name: heading, label: "Имя (заголовок)", type: string, required: true }
-      - { name: role, label: "Подпись под именем (курсивом)", type: string, description: "Напр.: writer & poet" }
+      - { name: role, label: "Подпись рядом с именем", type: string, description: "Напр.: Writer & Poet" }
       - { name: portrait, label: "Портрет", type: image, description: "Чёрно-белый на сайте делается автоматически" }
       - { name: body, label: "Текст био", type: text, required: true, description: "3-е лицо, 5–10 предложений. Курсив: *название*" }
 
@@ -98,7 +98,7 @@ content:
     format: yaml-frontmatter
     fields:
       - { name: heading, label: "Имя (заголовок)", type: string, required: true }
-      - { name: role, label: "Подпись под именем (курсивом)", type: string, description: "Напр.: photographer" }
+      - { name: role, label: "Подпись рядом с именем", type: string, description: "Напр.: Photographer" }
       - { name: image, label: "Фото рядом с текстом (необязательно)", type: image }
       - { name: body, label: "Текст", type: text, required: true, description: "3–5 строк" }
 
