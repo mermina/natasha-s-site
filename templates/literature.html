@@ -35,13 +35,22 @@
 </div></section>
 
 {% if news %}
-<section id="news"><div class="wrap"><span class="eyebrow">News</span><h2>News</h2>
-  <ul class="news">
-  {% for n in news %}<li><div class="when">{{ n.when }}</div>
-    <div><h3>{% if n.link %}<a href="{{ n.link }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h3>{{ n.html }}
-    {% if n.image %}<img loading="lazy" src="{{ n.image|img(600) }}" alt="">{% endif %}</div></li>
-  {% endfor %}
-  </ul>
-</div></section>
+<section id="news">
+  <div class="wrap"><span class="eyebrow">News</span><h2>News</h2></div>
+  <div class="railbox">
+    <button class="arrow prev" aria-label="Newer">&larr;</button><button class="arrow next" aria-label="Older">&rarr;</button>
+    <div class="rail newsrail">
+    {% for n in news %}
+      <article class="card">
+        <div class="when">{{ n.when }}</div>
+        {% if n.image %}<img loading="lazy" src="{{ n.image|img(600) }}" alt="">{% endif %}
+        <h3>{% if n.link %}<a href="{{ n.link }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h3>
+        {{ n.html }}
+      </article>
+    {% endfor %}
+    </div>
+  </div>
+  <p class="hint">Newest first &middot; scroll or swipe sideways for older news</p>
+</section>
 {% endif %}
 {% endblock %}
