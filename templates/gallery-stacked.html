@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ g.title }} — {{ site.name }}{% endblock %}
+{% block content %}
+{% include "variant.html" %}
+<section class="first"><div class="wrap narrow">
+  <a class="back sans" href="{{ back }}">&larr; All photography</a>
+  <h1 style="font-size:clamp(32px,5vw,56px);margin:22px 0 10px;text-align:center">{{ g.title }}</h1>
+  {% if g.description %}<p class="meta" style="text-align:center">{{ g.description }}</p>{% endif %}
+  <div class="column">
+  {% for p in g.photos %}
+    <figure onclick="lb(this)" data-big="{{ p.image|img(2000) }}" data-title="{{ p.caption or '' }}" data-meta="{{ g.title }}">
+      <img loading="lazy" src="{{ p.image|img(2000) }}" alt="{{ p.caption or '' }}">
+      {% if p.caption %}<figcaption>{{ p.caption }}</figcaption>{% endif %}
+    </figure>
+  {% endfor %}
+  </div>
+  <p style="text-align:center;margin-top:40px"><a class="back sans" href="{{ back }}">&larr; All photography</a></p>
+</div></section>
+{% endblock %}

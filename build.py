@@ -95,10 +95,21 @@ def main():
     write("index.html", "index.html", side=None)
     write("literature.html", "literature.html", side="literature",
           about=load_md(C("literature-about.md")), books=books, published=published, news=news)
-    write("photography.html", "photography.html", side="photography",
-          about=load_md(C("photography-about.md")), galleries=galleries)
-    for g in galleries:
-        write("photography-%s.html" % g["slug"], "gallery.html", side="photography", g=g)
+    # Two photography layouts for now (decision pending):
+    #   rail    — grid of covers → gallery as one sideways line   (photography.html)
+    #   stacked — big covers one under another → photos one under another (photography-stacked.html)
+    photo_about = load_md(C("photography-about.md"))
+    L = {"rail": ("photography.html", "photography-", "photography.html", "gallery.html"),
+         "stacked": ("photography-stacked.html", "photography-stacked-", "photography-stacked-", "gallery-stacked.html")}
+    def links(active, page):
+        return [("Line", page("rail"), active == "rail"), ("Stacked", page("stacked"), active == "stacked")]
+    for lay, (overview, prefix, _, gtpl) in L.items():
+        write(overview, "photography.html" if lay == "rail" else "photography-stacked.html",
+              side="photography", about=photo_about, galleries=galleries, prefix=prefix, layout=lay,
+              variant_links=links(lay, lambda x: L[x][0]))
+        for g in galleries:
+            write("%s%s.html" % (prefix, g["slug"]), gtpl, side="photography", g=g, back=overview,
+                  variant_links=links(lay, lambda x, s=g["slug"]: "%s%s.html" % (L[x][1], s)))
     open(os.path.join(OUT, ".nojekyll"), "w").close()
 
 if __name__ == "__main__":

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ g.title }} — {{ site.name }}{% endblock %}
 {% block content %}
+{% include "variant.html" %}
 <section class="first"><div class="wrap">
-  <a class="back sans" href="photography.html">&larr; All photography</a>
+  <a class="back sans" href="{{ back }}">&larr; All photography</a>
   <h1 style="font-size:clamp(32px,5vw,56px);margin:22px 0 10px">{{ g.title }}</h1>
   {{ g.html }}
   {% if g.description %}<p class="meta" style="max-width:60ch">{{ g.description }}</p>{% endif %}

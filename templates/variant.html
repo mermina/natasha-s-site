@@ -1,0 +1,2 @@
+{% if draft and variant_links %}<div class="variant sans">Layout:
+{% for label,href,on in variant_links %}<a href="{{ href }}" class="{{ 'on' if on }}">{{ label }}</a>{% endfor %}</div>{% endif %}

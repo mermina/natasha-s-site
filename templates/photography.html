@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %}{{ site.name }} — Photography{% endblock %}
 {% block content %}
+{% include "variant.html" %}
 <section class="first"><div class="wrap">
   <div class="about {{ 'right' if about.image else 'solo' }}">
     <div class="body"><h1>{{ about.heading }}</h1>{{ about.html }}</div>
     {% if about.image %}<div class="img"><img src="{{ about.image|img(900) }}" alt=""></div>{% endif %}
   </div>
-  <div class="covers">
+  <div class="covers {{ layout }}">
   {% for g in galleries %}
-    <a class="cover" href="photography-{{ g.slug }}.html">
+    <a class="cover" href="{{ prefix }}{{ g.slug }}.html">
       <div class="stack"><img loading="lazy" src="{{ g.cover|img(900) }}" alt=""></div>
       <h3>{{ g.title }}</h3>
-      <div class="count">{{ g.photos|length }} photo{{ 's' if g.photos|length != 1 }} &rarr;</div>
     </a>
   {% endfor %}
   </div>
