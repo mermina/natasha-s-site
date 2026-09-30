@@ -95,21 +95,19 @@ def main():
     write("index.html", "index.html", side=None)
     write("literature.html", "literature.html", side="literature",
           about=load_md(C("literature-about.md")), books=books, published=published, news=news)
-    # Two photography layouts for now (decision pending):
-    #   rail    — grid of covers → gallery as one sideways line   (photography.html)
-    #   stacked — big covers one under another → photos one under another (photography-stacked.html)
+    # Photography overview: one big cover per category, one under another (as sergeisarakhanov.com/projects).
+    # Inside a gallery, two layouts for now (decision pending), switchable on draft builds:
+    #   line    — photos in one sideways line (wheel / arrows / swipe)   photography-<slug>.html
+    #   stacked — large photos one under another                          photography-stacked-<slug>.html
     photo_about = load_md(C("photography-about.md"))
-    L = {"rail": ("photography.html", "photography-", "photography.html", "gallery.html"),
-         "stacked": ("photography-stacked.html", "photography-stacked-", "photography-stacked-", "gallery-stacked.html")}
-    def links(active, page):
-        return [("Line", page("rail"), active == "rail"), ("Stacked", page("stacked"), active == "stacked")]
-    for lay, (overview, prefix, _, gtpl) in L.items():
-        write(overview, "photography.html" if lay == "rail" else "photography-stacked.html",
-              side="photography", about=photo_about, galleries=galleries, prefix=prefix, layout=lay,
-              variant_links=links(lay, lambda x: L[x][0]))
+    write("photography.html", "photography.html", side="photography",
+          about=photo_about, galleries=galleries, prefix="photography-")
+    G = {"line": ("photography-", "gallery.html"), "stacked": ("photography-stacked-", "gallery-stacked.html")}
+    for lay, (prefix, tpl) in G.items():
         for g in galleries:
-            write("%s%s.html" % (prefix, g["slug"]), gtpl, side="photography", g=g, back=overview,
-                  variant_links=links(lay, lambda x, s=g["slug"]: "%s%s.html" % (L[x][1], s)))
+            links = [(lab.capitalize(), "%s%s.html" % (G[lab][0], g["slug"]), lab == lay) for lab in G]
+            write("%s%s.html" % (prefix, g["slug"]), tpl, side="photography", g=g,
+                  back="photography.html", variant_links=links)
     open(os.path.join(OUT, ".nojekyll"), "w").close()
 
 if __name__ == "__main__":
