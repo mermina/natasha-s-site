@@ -4,7 +4,7 @@
 <section class="first" id="about"><div class="wrap">
   <div class="about">
     {% if about.portrait %}<div class="img"><img src="{{ about.portrait|img(900) }}" alt="{{ site.name }}"></div>{% endif %}
-    <div class="body"><h1 class="named">{{ about.heading }}{% if about.role %} <span class="role {{ side }}">{{ about.role|replace("&", "<span class=\"amp\">&amp;</span>")|safe if side=="literature" else about.role }}</span>{% endif %}</h1>{{ about.html }}
+    <div class="body"><h1 class="named">{{ about.heading }}{% if about.role %} <span class="role {{ side }}">{{ about.role }}</span>{% endif %}</h1>{{ about.html }}
       <p class="meta">{{ site.location }} &middot; {{ site.languages }}</p></div>
   </div>
 </div></section>
