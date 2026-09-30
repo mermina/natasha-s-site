@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{ site.name }}{% endblock %}</title>
+<link rel="stylesheet" href="{{ root }}static/style.css">
+</head><body>
+{% block body %}
+<header class="top"><div class="wrap">
+  <a class="name" href="{{ root }}index.html">{{ site.name }}</a>
+  <nav class="switch">
+    <a href="{{ root }}literature.html" class="{{ 'on' if side=='literature' }}">Literature</a>
+    <a href="{{ root }}photography.html" class="{{ 'on' if side=='photography' }}">Photography</a>
+  </nav>
+</div></header>
+{% block content %}{% endblock %}
+<footer><div class="wrap">{{ site.name }} &mdash; {{ site.location }} &middot;
+<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% if side=='photography' %} &middot; <a href="{{ site.photo_archive }}">Photo archive</a>{% endif %}</div></footer>
+<div class="lb" id="lb" onclick="this.classList.remove('on')">
+  <img id="lb-img" src="" alt=""><div class="cap"><div id="lb-title"></div><div class="m" id="lb-meta"></div></div>
+</div>
+{% endblock %}
+{% if draft %}<div class="draft">draft v2 &middot; demo content</div>{% endif %}
+<script src="{{ root }}static/site.js"></script>
+</body></html>

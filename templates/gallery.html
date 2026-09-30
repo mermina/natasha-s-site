@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ g.title }} — {{ site.name }}{% endblock %}
+{% block content %}
+<section class="first"><div class="wrap">
+  <a class="back sans" href="photography.html">&larr; All photography</a>
+  <h1 style="font-size:clamp(32px,5vw,56px);margin:22px 0 10px">{{ g.title }}</h1>
+  {{ g.html }}
+  {% if g.description %}<p class="meta" style="max-width:60ch">{{ g.description }}</p>{% endif %}
+</div>
+<div class="railbox" style="margin-top:26px">
+  <button class="arrow prev" aria-label="Previous">&larr;</button><button class="arrow next" aria-label="Next">&rarr;</button>
+  <div class="rail">
+  {% for p in g.photos %}
+    <figure onclick="lb(this)" data-big="{{ p.image|img(2000) }}" data-title="{{ p.caption or '' }}" data-meta="{{ g.title }}">
+      <img loading="lazy" src="{{ p.image|img(1200) }}" alt="{{ p.caption or '' }}">
+      {% if p.caption %}<figcaption>{{ p.caption }}</figcaption>{% endif %}
+    </figure>
+  {% endfor %}
+  </div>
+</div>
+<p class="hint">Scroll or swipe sideways &middot; click a photo to enlarge</p>
+</section>
+{% endblock %}

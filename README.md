@@ -1,90 +1,26 @@
-# Сайт Наташи — черновики
+# Natasha S. — website (v2)
 
-Репозиторий: https://github.com/mermina/natasha-s-site
+Static site: content files + templates → `_site/`, published by GitHub Pages.
+Natasha edits the content in **Pages CMS**; the design lives in `templates/` and `static/`.
 
-## Ссылки для Наташи
+## Layout
 
-Наташе даём одну ссылку — https://mermina.github.io/natasha-s-site/ — оттуда открываются
-все три варианта. Pages включён, после пуша сайт пересобирается за минуту-две.
-
-| Ссылка | Что откроется |
-|---|---|
-| https://mermina.github.io/natasha-s-site/option-a-one-site.html | **Вариант A — один сайт.** Меню сверху: Books / Photography / Writing / About, всё на одной странице |
-| https://mermina.github.io/natasha-s-site/option-b-two-sides.html | **Вариант B — две половины.** Вход разделён пополам: слева фотография, справа литература. Надо кликнуть на одну из половин, дальше сверху переключатель и ссылка Entrance обратно на вход |
-| https://mermina.github.io/natasha-s-site/books-layouts.html | **Вариант C — три раскладки книг.** Не сайт, а сравнение. Сверху три вкладки — Rail, Staggered, Asymmetric — по каждой надо нажать |
-
-На всех страницах: ленты прокручиваются вбок, клик по снимку или обложке открывает её во весь
-экран, Esc закрывает, слева внизу ссылка «все варианты» возвращает в оглавление.
-
-Ссылки на файлы внутри репозитория (github.com/...) открывают исходный код, а не сайт.
-Для показа годятся только адреса вида `mermina.github.io/...`.
-
-Локально всё то же самое открывается двойным щелчком по файлу, начиная с `index.html`.
-
-## С чего начинать
-
-**`index.html` — начинать отсюда.** Это оглавление для Наташи: три карточки со ссылками
-на остальные страницы, объяснение, что здесь настоящее, а что заглушка, и как смотреть.
-Именно эту ссылку даём ей.
-
-## Страницы
-
-| Файл | Что это | Что решаем |
+| Path | What | Who edits |
 |---|---|---|
-| `index.html` | Оглавление и пояснения для Наташи | — |
-| `option-a-one-site.html` | Вариант A: один сайт, меню сверху (Books / Photography / Writing / About), всё на одной странице | Хватает ли обычной навигации |
-| `option-b-two-sides.html` | Вариант B: вход разделён пополам, слева фотография, справа литература; после выбора сверху остаётся переключатель и ссылка Entrance обратно | Нужен ли разделённый вход |
-| `books-layouts.html` | Вариант C: три вкладки с раскладками обложек — Rail, Staggered, Asymmetric | Какую раскладку книг ставим в сайт |
+| `content/` | all texts, books, publications, news, galleries | Natasha (Pages CMS) |
+| `media/` | uploaded photos (originals) | Natasha (Pages CMS) |
+| `templates/`, `static/` | design | Marina |
+| `build.py` | content + templates → `_site/`, resizes photos | Marina |
+| `.pages.yml` | what Natasha sees in the editor | Marina |
+| `.github/workflows/deploy.yml` | rebuild + publish on every save | — |
+| `legacy/` | the 26 Sept prototypes (options A/B/C) | archive |
 
-Со всех трёх страниц слева внизу есть ссылка «все варианты» — возврат на `index.html`.
-Поэтому папку нужно отправлять целиком, а не отдельными файлами.
+## Build locally
 
-## Что работает на страницах
+    pip install pyyaml jinja2 markdown pillow
+    python3 build.py --draft      # open _site/index.html
 
-- Ленты фотографий и обложек прокручиваются вбок.
-- Клик по снимку или обложке открывает его во весь экран, Esc закрывает.
-- На узком экране всё перестраивается в одну колонку.
+## Status (30 Sept 2026)
 
-## Откуда взялся контент
-
-- **Тексты, книги, публикации, биография** — из `../input/Natasha-CV-2026.pdf`.
-- **Фотографии** — временные, подтянуты прямо с natashas.smugmug.com. Наташа их не отбирала.
-- **Обложки книг и портрет** — сначала ищутся локально в `img/`, если там пусто — грузятся
-  по ссылке из Google Drive, а если и это не сработало, показывается карточка с названием книги.
-
-### Папка `img/` (пока пустая)
-
-Чтобы обложки и портрет были видны не только Марине, их надо положить сюда из Drive
-(папка `NATASHA_S`) под этими именами:
-
-```
-img/mara-cover.jpg          ← Mara cover.jpg
-img/skaldreki-cover.jpg     ← Skaldreki.jpg
-img/maltaka-cover.jpg       ← Máltaka cover.jpg
-img/polifonia-cover.jpg     ← polifonia cover.jpg
-img/magma-cover.jpg         ← Магма обложка.jpg
-img/odnoi-tsepyu-cover.jpg  ← Одной цепью cover.jpg
-img/natasha-portrait.jpg    ← Natasha.jpg
-```
-
-Ссылки на Drive работают только у того, кто вошёл в этот аккаунт. Без локальных файлов
-Наташа увидит серые карточки вместо обложек.
-
-## Как это собрано
-
-HTML не редактируется вручную — он генерируется скриптами:
-
-- `build.py` — данные (книги, фотографии, биография), стили и оба варианта сайта.
-- `build_books_layouts.py` — страница сравнения раскладок, берёт данные из `build.py`.
-- `make_index.py` — оглавление `index.html`.
-
-Пересобрать всё: `python3 build.py && python3 build_books_layouts.py && python3 make_index.py`
-
-## Открытые вопросы
-
-1. Какой вариант развиваем: A или B.
-2. Какая раскладка книг: 1, 2 или 3.
-3. Стороны в варианте B: 26.09 решено «слева фотография, справа литература», 18.09 было наоборот.
-4. Язык сайта: исландский, английский, оба.
-5. Отбор фотографий — за Наташей.
-6. В варианте B раздел About повторяется на обеих сторонах.
+Demo content: photos are SmugMug stand-ins sorted by Marina, not Natasha's selection;
+book covers come from Drive links that only load for Marina; the photography bio is a placeholder.

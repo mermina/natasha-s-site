@@ -1,0 +1,49 @@
+books:
+- title: Mara kemur í heimsókn
+  kind: Poetry
+  publisher: Benedikt
+  year: 2025
+  prize: Maístjarnan 2026
+  cover: https://drive.google.com/thumbnail?id=1kEqq9FwawiDllqJW6RjRZ0D1_syT5_AA&sz=w900
+  link: ''
+  show: true
+- title: Skáldreki // Writers adrift
+  kind: Essays — editor, co-author
+  publisher: Una útgáfuhús
+  year: 2023
+  prize: ''
+  cover: https://drive.google.com/thumbnail?id=1LC6AjpxIW5vZYOul0otzyo-QNkKqaYwR&sz=w900
+  link: ''
+  show: true
+- title: Máltaka á stríðstímum
+  kind: Poetry
+  publisher: Una útgáfuhús
+  year: 2022
+  prize: Tómas Guðmundsson Prize 2022
+  cover: https://drive.google.com/thumbnail?id=1QJbDG1_gnBajHfMWM48tz0cYZWMLr-4X&sz=w900
+  link: ''
+  show: true
+- title: Polífonía af erlendum uppruna
+  kind: Poetry anthology — editor, co-author
+  publisher: Una útgáfuhús
+  year: 2021
+  prize: ''
+  cover: https://drive.google.com/thumbnail?id=1PRlQVM2-pqzLuX6fDTOfBQcABqiGvOdz&sz=w900
+  link: ''
+  show: true
+- title: Магма / Kvika
+  kind: Translation of Þóra Hjörleifsdóttir
+  publisher: Дримбук
+  year: 2022
+  prize: ''
+  cover: https://drive.google.com/thumbnail?id=1xuNv1bJBMcy7Besaz32hfG1S21Moe-01&sz=w900
+  link: ''
+  show: true
+- title: Одной цепью
+  kind: Short story — «На десерт мороженое»
+  publisher: Есть смысл
+  year: 2021
+  prize: ''
+  cover: https://drive.google.com/thumbnail?id=1jxL9Z2jdy6k9P1HhVAfg7zvmx9YCP7A9&sz=w900
+  link: ''
+  show: true

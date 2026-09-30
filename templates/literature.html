@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ site.name }} — Literature{% endblock %}
+{% block content %}
+<section class="first" id="about"><div class="wrap">
+  <div class="about">
+    {% if about.portrait %}<div class="img"><img src="{{ about.portrait|img(900) }}" alt="{{ site.name }}"></div>{% endif %}
+    <div class="body"><h1>{{ about.heading }}</h1>{{ about.html }}
+      <p class="meta">{{ site.location }} &middot; {{ site.languages }}</p></div>
+  </div>
+</div></section>
+
+<section id="books">
+  <div class="wrap"><span class="eyebrow">Books</span></div>
+  <div class="railbox">
+    <button class="arrow prev" aria-label="Previous">&larr;</button><button class="arrow next" aria-label="Next">&rarr;</button>
+    <div class="rail books">
+    {% for b in books %}
+      <figure onclick="lb(this)" data-big="{{ b.cover|img(1400) }}" data-title="{{ b.title }}" data-meta="{{ b.kind }} — {{ b.publisher }}, {{ b.year }}">
+        <img loading="lazy" src="{{ b.cover|img(700) }}" alt="" onerror="ph(this)">
+        <figcaption><div class="t">{% if b.link %}<a href="{{ b.link }}">{{ b.title }}</a>{% else %}{{ b.title }}{% endif %}</div>
+          <div>{{ b.kind }}</div><div>{{ b.publisher }}, {{ b.year }}</div>
+          {% if b.prize %}<div class="prize">{{ b.prize }}</div>{% endif %}</figcaption>
+      </figure>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="published"><div class="wrap"><span class="eyebrow">Writing</span><h2>Published work</h2>
+  <div class="cols">
+  {% for g in published %}<div><h3>{{ g.heading }}</h3><ul>
+    {% for i in g['items'] %}<li>{% if i.link %}<a href="{{ i.link }}">{{ i.text|safe }}</a>{% else %}{{ i.text|safe }}{% endif %}</li>{% endfor %}
+  </ul></div>{% endfor %}
+  </div>
+</div></section>
+
+{% if news %}
+<section id="news"><div class="wrap"><span class="eyebrow">News</span><h2>News</h2>
+  <ul class="news">
+  {% for n in news %}<li><div class="when">{{ n.when }}</div>
+    <div><h3>{% if n.link %}<a href="{{ n.link }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h3>{{ n.html }}
+    {% if n.image %}<img loading="lazy" src="{{ n.image|img(600) }}" alt="">{% endif %}</div></li>
+  {% endfor %}
+  </ul>
+</div></section>
+{% endif %}
+{% endblock %}

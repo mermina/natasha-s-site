@@ -1,0 +1,139 @@
+# Pages CMS configuration — DRAFT, not yet validated against a live Pages CMS install.
+# Labels are in Russian because Natasha edits in Russian; field names stay English for build.py.
+# Syntax per pagescms.org/docs (fields, list, select, image, media, operations, filename).
+
+settings:
+  commit:
+    identity: user          # commits show who edited (Natasha / Marina)
+
+media:
+  input: media
+  output: /media
+  rename: true
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  # ---------------- Литература ----------------
+  - name: literature-about
+    label: "Литература — Обо мне"
+    type: file
+    path: content/literature-about.md
+    format: yaml-frontmatter
+    fields:
+      - { name: heading, label: "Заголовок", type: string, required: true }
+      - { name: portrait, label: "Портрет", type: image, description: "Чёрно-белый на сайте делается автоматически" }
+      - { name: body, label: "Текст био", type: text, required: true, description: "3-е лицо, 5–10 предложений. Курсив: *название*" }
+
+  - name: books
+    label: "Литература — Книги"
+    type: file
+    path: content/books.yml
+    format: yaml
+    fields:
+      - name: books
+        label: "Книги (сверху вниз = слева направо на сайте)"
+        type: object
+        list: { collapsible: { collapsed: true, summary: "{fields.title}" } }
+        fields:
+          - { name: title, label: "Название", type: string, required: true }
+          - { name: kind, label: "Жанр / роль", type: string, description: "Напр.: Poetry; Essays — editor, co-author" }
+          - { name: publisher, label: "Издательство", type: string }
+          - { name: year, label: "Год", type: number }
+          - { name: prize, label: "Премия (если есть)", type: string }
+          - { name: cover, label: "Обложка", type: image }
+          - { name: link, label: "Ссылка (необязательно)", type: string }
+          - { name: show, label: "Показывать на сайте", type: boolean, default: true }
+
+  - name: published
+    label: "Литература — Публикации"
+    type: file
+    path: content/published.yml
+    format: yaml
+    fields:
+      - name: groups
+        label: "Разделы"
+        type: object
+        list: { collapsible: { collapsed: true, summary: "{fields.heading}" } }
+        fields:
+          - { name: heading, label: "Название раздела", type: string, required: true }
+          - name: items
+            label: "Публикации"
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{fields.text}" } }
+            fields:
+              - { name: text, label: "Текст строки", type: string, required: true, description: "Издание — что, год" }
+              - { name: link, label: "Ссылка (необязательно)", type: string }
+              - { name: show, label: "Показывать на сайте", type: boolean, default: true }
+
+  - name: news
+    label: "Литература — Новости"
+    type: collection
+    path: content/news
+    format: yaml-frontmatter
+    filename: "{fields.date}-{primary}.md"
+    view: { fields: [title, date], sort: [date], default: { sort: date, order: desc } }
+    fields:
+      - { name: title, label: "Заголовок", type: string, required: true }
+      - { name: date, label: "Дата", type: date, required: true, description: "Можно в прошлом. Если не помнишь день — поставь 1-е число и выбери точность ниже" }
+      - name: date_precision
+        label: "Показывать дату как"
+        type: select
+        default: day
+        options:
+          values:
+            - { name: day, label: "день месяц год" }
+            - { name: month, label: "месяц год" }
+            - { name: year, label: "только год" }
+      - { name: body, label: "Текст новости", type: text, description: "1–3 предложения" }
+      - { name: link, label: "Ссылка (необязательно)", type: string }
+      - { name: image, label: "Картинка (необязательно)", type: image }
+      - { name: show, label: "Показывать на сайте", type: boolean, default: true }
+
+  # ---------------- Фотография ----------------
+  - name: photography-about
+    label: "Фотография — Обо мне"
+    type: file
+    path: content/photography-about.md
+    format: yaml-frontmatter
+    fields:
+      - { name: heading, label: "Заголовок", type: string, required: true }
+      - { name: image, label: "Фото рядом с текстом (необязательно)", type: image }
+      - { name: body, label: "Текст", type: text, required: true, description: "3–5 строк" }
+
+  - name: galleries
+    label: "Фотография — Галереи"
+    type: collection
+    path: content/galleries
+    format: yaml-frontmatter
+    operations: { create: false, delete: false, rename: false }   # categories fixed; ask Marina to add one
+    view: { fields: [title, order] }
+    fields:
+      - { name: title, label: "Название категории", type: string, required: true }
+      - { name: order, label: "Порядок на странице (1 = первая)", type: number }
+      - { name: description, label: "Подзаголовок (необязательно)", type: text }
+      - { name: cover, label: "Заглавная фотография", type: image, description: "Если пусто — берётся первая из списка" }
+      - name: photos
+        label: "Фотографии (сверху вниз = слева направо)"
+        type: object
+        list: { collapsible: { collapsed: true, summary: "{fields.caption}" } }
+        fields:
+          - { name: image, label: "Фото", type: image, required: true }
+          - { name: caption, label: "Подпись (необязательно)", type: string }
+      - { name: show, label: "Показывать на сайте", type: boolean, default: true }
+
+  # ---------------- Общее ----------------
+  - name: site
+    label: "Общее — контакты и вход"
+    type: file
+    path: content/site.yml
+    format: yaml
+    fields:
+      - { name: name, label: "Имя на сайте", type: string, required: true }
+      - { name: email, label: "E-mail", type: string, required: true }
+      - { name: location, label: "Город", type: string }
+      - { name: languages, label: "Языки", type: string }
+      - { name: photo_archive, label: "Ссылка на архив SmugMug", type: string }
+      - { name: entrance_literature_image, label: "Вход: картинка «Литература»", type: image }
+      - { name: entrance_photography_image, label: "Вход: картинка «Фотография»", type: image }
+      - { name: entrance_literature_subtitle, label: "Вход: подпись «Литература»", type: string }
+      - { name: entrance_photography_subtitle, label: "Вход: подпись «Фотография»", type: string }

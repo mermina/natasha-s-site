@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="gate">
+  <div class="who">{{ site.name }}</div>
+  <a class="half lit" href="literature.html">
+    {% if site.entrance_literature_image %}<img src="{{ site.entrance_literature_image|img(1400) }}" alt="">{% endif %}
+    <div class="label"><h2>Literature</h2><div class="sub sans">{{ site.entrance_literature_subtitle }}</div></div>
+  </a>
+  <a class="half pho" href="photography.html">
+    {% if site.entrance_photography_image %}<img src="{{ site.entrance_photography_image|img(1400) }}" alt="">{% endif %}
+    <div class="label"><h2>Photography</h2><div class="sub sans">{{ site.entrance_photography_subtitle }}</div></div>
+  </a>
+</div>
+{% endblock %}
