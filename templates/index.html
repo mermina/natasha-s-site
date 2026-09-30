@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="gate">
-  <div class="who">{{ site.name }}</div>
+  <div class="gatelogo" aria-label="{{ site.name }} — ljóð, ljósmyndir">
+    <div class="l"><span class="nm">{{ site.name }}</span><span class="roots"><span>Ljó</span><span><span class="mir" aria-hidden="true">Ljó</span></span></span></div>
+    <div class="r"><span>ð</span><span>smyndir</span></div>
+  </div>
   <a class="half lit" href="literature.html">
     {% if site.entrance_literature_image %}<img src="{{ site.entrance_literature_image|img(1400) }}" alt="">{% endif %}
     <div class="label"><h2>Literature</h2><div class="sub sans">{{ site.entrance_literature_subtitle }}</div></div>

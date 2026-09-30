@@ -6,7 +6,7 @@
 </head><body>
 {% block body %}
 <header class="top"><div class="wrap">
-  <a class="name" href="{{ root }}index.html">{{ site.name }}</a>
+  <a class="brand" href="{{ root }}index.html">{% include "logo.html" %}</a>
   <nav class="switch">
     <a href="{{ root }}literature.html" class="{{ 'on' if side=='literature' }}">Literature</a>
     <a href="{{ root }}photography.html" class="{{ 'on' if side=='photography' }}">Photography</a>
