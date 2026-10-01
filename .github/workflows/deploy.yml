@@ -1,5 +1,5 @@
 # Rebuild and publish the site on every push to main (incl. saves from Pages CMS).
-# Inactive until: this branch is merged to main AND repo Settings → Pages → Source = "GitHub Actions".
+# Needs repo Settings → Pages → Source = "GitHub Actions".
 name: Build and deploy
 on:
   push: { branches: [main] }
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install pyyaml jinja2 markdown pillow
-      - run: python build.py
+      - run: python build.py --draft   # preview stage: badge + questions. Drop --draft at launch.
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
   deploy:

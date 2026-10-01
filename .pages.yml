@@ -85,9 +85,25 @@ content:
             - { name: day, label: "день месяц год" }
             - { name: month, label: "месяц год" }
             - { name: year, label: "только год" }
-      - { name: body, label: "Текст новости", type: text, description: "1–3 предложения" }
-      - { name: link, label: "Ссылка (необязательно)", type: string }
-      - { name: image, label: "Картинка (необязательно)", type: image }
+      - { name: body, label: "Текст новости", type: text, description: "1–3 предложения (можно оставить пустым)" }
+      - name: links
+        label: "Ссылки — пресса, видео, интервью"
+        type: object
+        list: { collapsible: { collapsed: true, summary: "{fields.source}" } }
+        description: "Сколько угодно. Название источника видно на сайте, напр. RÚV, Vísir, Grapevine"
+        fields:
+          - { name: source, label: "Источник", type: string, required: true }
+          - { name: url, label: "Адрес (URL)", type: string, required: true }
+      - name: book
+        label: "Связанная книга (необязательно)"
+        type: select
+        description: "Если нет своей картинки — на карточке будет обложка этой книги"
+        options:
+          values: ["Mara kemur í heimsókn", "Skáldreki // Writers adrift", "Máltaka á stríðstímum", "Polífonía af erlendum uppruna", "Магма / Kvika", "Одной цепью"]
+      - { name: image, label: "Картинка (необязательно)", type: image, description: "Своё фото — или фото из статьи, но только с разрешением издания/фотографа" }
+      - { name: image_credit, label: "Автор фото", type: string, description: "Если фото не твоё: напр. «Vísir / Vilhelm». Будет подпись под фото" }
+      - { name: image_permission, label: "Разрешение на фото получено", type: boolean, default: false, description: "Чужое фото появится на сайте только когда это отмечено" }
+      - { name: pin, label: "Главная новость года", type: boolean, default: false, description: "Встаёт первой в своём году и получает обложку книги" }
       - { name: show, label: "Показывать на сайте", type: boolean, default: true }
 
   # ---------------- Фотография ----------------

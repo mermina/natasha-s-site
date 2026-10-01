@@ -39,18 +39,24 @@
   <div class="wrap"><span class="eyebrow">News</span><h2>News</h2></div>
   <div class="railbox">
     <button class="arrow prev" aria-label="Newer">&larr;</button><button class="arrow next" aria-label="Older">&rarr;</button>
-    <div class="rail newsrail">
-    {% for n in news %}
-      <article class="card">
+    <div class="rail newsrail" data-loop>
+    {% for y in news_years %}
+      <div class="yearmark" aria-hidden="true">{{ y.year }}</div>
+      {% for n in y["items"] %}
+      <article class="ncard{% if not n.picture %} noimg{% endif %}">
+        {% if n.picture %}<div class="pic{% if n.is_cover %} cover{% endif %}"><img loading="lazy" src="{{ n.picture|img(600) }}" alt="{% if n.is_cover %}Cover of {{ n.book }}{% else %}{{ n.title }}{% endif %}">{% if local and n.pending and not n.is_cover %}<span class="pendingtag">awaiting permission</span>{% endif %}</div>{% if n.image_credit and not n.is_cover %}<div class="credit">Photo: {{ n.image_credit }}</div>{% endif %}{% endif %}
         <div class="when">{{ n.when }}</div>
-        {% if n.image %}<img loading="lazy" src="{{ n.image|img(600) }}" alt="">{% endif %}
-        <h3>{% if n.link %}<a href="{{ n.link }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h3>
+        <h4>{% if n.links|length == 1 %}<a href="{{ n.links[0].url }}" target="_blank" rel="noopener">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h4>
         {{ n.html }}
+        {% if n.links %}<p class="sources">{% for l in n.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.source }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>{% endif %}
+        {% if draft and n.confirm %}<p class="confirm">? {{ n.confirm }}</p>{% endif %}
       </article>
+      {% endfor %}
     {% endfor %}
+      <button type="button" class="backtostart" onclick="this.closest('.rail').scrollTo({left:0,behavior:'smooth'})">&larr;&nbsp;Back to the newest</button>
     </div>
   </div>
-  <p class="hint">Newest first &middot; scroll or swipe sideways for older news</p>
+  <p class="hint wrap">Newest first &middot; scroll or swipe sideways &middot; the arrows go round in a loop</p>
 </section>
 {% endif %}
 {% endblock %}

@@ -1,7 +1,8 @@
 // Rails: mouse wheel scrolls sideways while the pointer is over a rail; arrows; swipe works natively.
 document.querySelectorAll('.railbox').forEach(function(box){
   var rail=box.querySelector('.rail'), prev=box.querySelector('.prev'), next=box.querySelector('.next');
-  function upd(){ if(!prev) return;
+  var loop=rail.hasAttribute('data-loop');
+  function upd(){ if(!prev || loop) return;
     prev.disabled = rail.scrollLeft<=2;
     next.disabled = rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2; }
   rail.addEventListener('wheel',function(e){
@@ -10,7 +11,11 @@ document.querySelectorAll('.railbox').forEach(function(box){
     if((e.deltaY<0&&atStart)||(e.deltaY>0&&atEnd)) return;      // at an end: let the page scroll
     e.preventDefault(); rail.scrollLeft+=e.deltaY;
   },{passive:false});
-  function go(d){ rail.scrollBy({left:d*rail.clientWidth*0.8,behavior:'smooth'}); }
+  function go(d){
+    var atStart=rail.scrollLeft<=2, atEnd=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;
+    if(loop && d>0 && atEnd){ rail.scrollTo({left:0,behavior:'smooth'}); return; }          // last -> first
+    if(loop && d<0 && atStart){ rail.scrollTo({left:rail.scrollWidth,behavior:'smooth'}); return; } // first -> last
+    rail.scrollBy({left:d*rail.clientWidth*0.8,behavior:'smooth'}); }
   if(prev){ prev.onclick=function(){go(-1)}; next.onclick=function(){go(1)}; }
   rail.addEventListener('scroll',upd); window.addEventListener('resize',upd); window.addEventListener('load',upd); upd();
 });

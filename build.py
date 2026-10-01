@@ -3,7 +3,8 @@
 
 Content is edited by Natasha in Pages CMS; design lives in templates/ and static/.
 Run:  python3 build.py            (writes _site/)
-      python3 build.py --draft    (adds a "draft" badge)
+      python3 build.py --draft    (adds a "draft" badge + questions)
+      python3 build.py --draft --local   (also previews press photos awaiting permission; never deploy this)
 """
 import os, sys, glob, shutil, datetime
 import yaml, markdown
@@ -13,7 +14,8 @@ from markupsafe import Markup
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "_site")
 C = lambda *p: os.path.join(ROOT, "content", *p)
-DRAFT = "--draft" in sys.argv
+DRAFT = "--draft" in sys.argv   # draft badge + yellow questions for Natasha (fine on the public preview)
+LOCAL = "--local" in sys.argv   # ALSO show press photos still awaiting permission: on Marina's Mac only, never deployed
 
 def load_yml(path):
     with open(path, encoding="utf-8") as f:
@@ -71,9 +73,36 @@ def main():
             published.append({"heading": g["heading"], "items": items})
     news = [load_md(p) for p in glob.glob(C("news", "*.md"))]
     news = [n for n in news if n.get("show", True)]
+    covers = {b["title"]: b.get("cover") for b in books}
     for n in news:
         n["when"] = when(n["date"], n.get("date_precision", "day"))
-    news.sort(key=lambda n: str(n["date"]), reverse=True)
+        n["year"] = str(n["date"])[:4]
+        # several links per item (source + url); old single `link` still works
+        n["links"] = [l for l in (n.get("links") or []) if l.get("url")]
+        if n.get("link") and not n["links"]:
+            n["links"] = [{"source": "Read more", "url": n["link"]}]
+        # someone else's photo (press) shows only once permission is ticked; drafts preview it with a badge
+        n["pending"] = bool(n.get("image")) and n.get("image_credit") and not n.get("image_permission")
+        if n["pending"] and not LOCAL:
+            n["image"] = ""
+        # picture: her own image if given, else the cover of the related book
+        n["is_cover"] = not n.get("image") and bool(covers.get(n.get("book")))
+        n["picture"] = n.get("image") or covers.get(n.get("book")) or ""
+    # newest year first; inside a year the "main news" (pin) leads, then by date
+    news.sort(key=lambda n: (n["year"], bool(n.get("pin")), str(n["date"])), reverse=True)
+    news_years = []
+    for n in news:
+        if not news_years or news_years[-1]["year"] != n["year"]:
+            news_years.append({"year": n["year"], "items": []})
+        news_years[-1]["items"].append(n)
+    # a book's cover appears once per year (on its newest item) so the grid doesn't repeat it
+    for y in news_years:
+        seen = set()
+        for n in y["items"]:
+            if n["is_cover"]:
+                if n["book"] in seen:
+                    n["picture"], n["is_cover"] = "", False
+                seen.add(n["book"])
     galleries = [load_md(p) for p in glob.glob(C("galleries", "*.md"))]
     galleries = [g for g in galleries if g.get("show", True) and g.get("photos")]
     for g in galleries:
@@ -82,10 +111,13 @@ def main():
 
     os.makedirs(OUT, exist_ok=True)
     shutil.copytree(os.path.join(ROOT, "static"), os.path.join(OUT, "static"), dirs_exist_ok=True)
+    # extras/: standalone pages published as they are (e.g. option C — book-cover layouts)
+    if os.path.isdir(os.path.join(ROOT, "extras")):
+        shutil.copytree(os.path.join(ROOT, "extras"), OUT, dirs_exist_ok=True)
 
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")), autoescape=select_autoescape(["html"]))
     env.filters["img"] = img
-    common = dict(site=site, root="", draft=DRAFT)
+    common = dict(site=site, root="", draft=DRAFT, local=LOCAL)
 
     def write(name, tpl, **ctx):
         html = env.get_template(tpl).render(**common, **ctx)
@@ -94,7 +126,7 @@ def main():
 
     write("index.html", "index.html", side=None)
     write("literature.html", "literature.html", side="literature",
-          about=load_md(C("literature-about.md")), books=books, published=published, news=news)
+          about=load_md(C("literature-about.md")), books=books, published=published, news=news, news_years=news_years)
     # Photography overview: one big cover per category, one under another (as sergeisarakhanov.com/projects).
     # Inside a gallery, two layouts for now (decision pending), switchable on draft builds:
     #   line    — photos in one sideways line (wheel / arrows / swipe)   photography-<slug>.html

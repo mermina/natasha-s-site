@@ -3,3 +3,6 @@ __pycache__/
 _site/
 design/
 OPEN-PREVIEW.html
+
+# third-party photos waiting for permission: never commit (public repo)
+media/pending/
