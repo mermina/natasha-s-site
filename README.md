@@ -18,9 +18,18 @@ Natasha edits the content in **Pages CMS**; the design lives in `templates/` and
 ## Build locally
 
     pip install pyyaml jinja2 markdown pillow
-    python3 build.py --draft      # open _site/index.html
+    python3 build.py --draft            # what the public preview shows; open _site/index.html
+    python3 build.py --draft --local    # + press photos awaiting permission (Marina's Mac only — never deploy)
 
-## Status (30 Sept 2026)
+## Status (1 Oct 2026)
 
-Demo content: photos are SmugMug stand-ins sorted by Marina, not Natasha's selection;
-book covers come from Drive links that only load for Marina; the photography bio is a placeholder.
+Live preview: https://mermina.github.io/natasha-s-site/ — the v2 site (split entrance, Literature, Photography),
+with a draft badge and yellow questions for Natasha. Option C, the book-cover layouts, is at `books-layouts.html`
+(linked from the draft badge). Options A and B are retired (still in git history).
+
+News: 21 items from Natasha's «Новостная полоса»; several source links per item; one sideways rail that loops.
+Press photos (Vísir, RÚV, Grapevine) need permission: until `image_permission: true` they appear only in
+`--local` builds, and files in `media/pending/` are git-ignored — the repo is public.
+
+Demo content: gallery photos are SmugMug stand-ins, not Natasha's selection; book covers come from her Drive;
+the photography bio is a placeholder.
