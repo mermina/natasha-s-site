@@ -12,7 +12,7 @@ links:
   url: https://skald.is/vidtol/25-faeding-innflytjendabokmennta-a-islandi-vidtal-vid-natoshu-stolyarova
 image: https://grapevine.is/wp-content/uploads/2021/12/natalia-stolyarova-bic8858-by-bicnick-1536x1024.jpg
 image_credit: Reykjavík Grapevine / Art Bicnick
-image_permission: false
+image_permission: true
 show: true
 pin: true
 ---

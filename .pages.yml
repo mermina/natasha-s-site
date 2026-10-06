@@ -102,6 +102,11 @@ content:
           values: ["Mara kemur í heimsókn", "Skáldreki // Writers adrift", "Máltaka á stríðstímum", "Polífonía af erlendum uppruna", "Магма / Kvika", "Одной цепью"]
       - { name: image, label: "Картинка (необязательно)", type: image, description: "Своё фото — или фото из статьи, но только с разрешением издания/фотографа" }
       - { name: image_credit, label: "Автор фото", type: string, description: "Если фото не твоё: напр. «Vísir / Vilhelm». Будет подпись под фото" }
+      - name: image_fit
+        label: "Как показать картинку"
+        type: select
+        default: cover
+        options: { values: [ { name: cover, label: "заполнить карточку (обрезать края)" }, { name: contain, label: "целиком (для вырезок и текста)" } ] }
       - { name: image_permission, label: "Разрешение на фото получено", type: boolean, default: false, description: "Чужое фото появится на сайте только когда это отмечено" }
       - { name: pin, label: "Главная новость года", type: boolean, default: false, description: "Встаёт первой в своём году и получает обложку книги" }
       - { name: show, label: "Показывать на сайте", type: boolean, default: true }

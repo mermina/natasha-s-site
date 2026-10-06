@@ -5,7 +5,7 @@ date_precision: year
 book: ''
 links: []
 image: ''
-show: true
+show: false
 confirm: What is the collaboration? Link?
 ---
 

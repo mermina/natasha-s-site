@@ -44,7 +44,7 @@
       <div class="yearmark" aria-hidden="true">{{ y.year }}</div>
       {% for n in y["items"] %}
       <article class="ncard{% if not n.picture %} noimg{% endif %}">
-        {% if n.picture %}<div class="pic{% if n.is_cover %} cover{% endif %}"><img loading="lazy" src="{{ n.picture|img(600) }}" alt="{% if n.is_cover %}Cover of {{ n.book }}{% else %}{{ n.title }}{% endif %}">{% if local and n.pending and not n.is_cover %}<span class="pendingtag">awaiting permission</span>{% endif %}</div>{% if n.image_credit and not n.is_cover %}<div class="credit">Photo: {{ n.image_credit }}</div>{% endif %}{% endif %}
+        {% if n.picture %}<div class="pic{% if n.is_cover %} cover{% endif %}{% if n.image_fit == 'contain' %} contain{% endif %}"><img loading="lazy" src="{{ n.picture|img(600) }}" alt="{% if n.is_cover %}Cover of {{ n.book }}{% else %}{{ n.title }}{% endif %}">{% if local and n.pending and not n.is_cover %}<span class="pendingtag">awaiting permission</span>{% endif %}</div>{% if n.image_credit and not n.is_cover %}<div class="credit">Photo: {{ n.image_credit }}</div>{% endif %}{% endif %}
         <div class="when">{{ n.when }}</div>
         <h4>{% if n.links|length == 1 %}<a href="{{ n.links[0].url }}" target="_blank" rel="noopener">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h4>
         {{ n.html }}

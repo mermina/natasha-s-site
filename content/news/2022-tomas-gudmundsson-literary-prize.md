@@ -6,11 +6,10 @@ book: Máltaka á stríðstímum
 links:
 - source: Vísir
   url: https://www.visir.is/g/20222325609d/natasha-s.-hlytur-bokmenntaverdlaun-tomasar-gudmundssonar
-image: media/pending/2022-tomas-prize-visir-vilhelm.jpg
+image: media/news/2022-tomas-prize-visir-vilhelm.jpg
 image_credit: Vísir / Vilhelm
-image_permission: false
+image_permission: true
 show: true
 pin: true
-confirm: Photo is Vísir's (photographer Vilhelm). Hidden on the live site until Vísir/the photographer give permission.
 ---
 For «Máltaka á stríðstímum», presented by the Mayor of Reykjavík on the day the book was released.

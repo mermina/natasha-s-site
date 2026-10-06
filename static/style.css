@@ -187,3 +187,5 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 .newsrail .ncard .pendingtag{position:absolute;left:8px;top:8px;background:#fff6d6;color:#6b5400;font:11px/1.4 -apple-system,Arial,sans-serif;padding:3px 7px}
 .newsrail .ncard .credit{font:11px/1.4 -apple-system,Arial,sans-serif;letter-spacing:.04em;color:var(--muted);margin:-8px 0 12px;text-align:right}
 .newsrail .backtostart{flex:0 0 auto;align-self:center;margin:0 28px 0 10px;background:none;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px -apple-system,Arial,sans-serif;color:var(--ink);cursor:pointer}
+.newsrail .ncard .pic.contain{background:#fff}
+.newsrail .ncard .pic.contain img{object-fit:contain}
