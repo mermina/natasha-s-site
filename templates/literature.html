@@ -48,6 +48,7 @@
         <div class="when">{{ n.when }}</div>
         <h4>{% if n.links|length == 1 %}<a href="{{ n.links[0].url }}" target="_blank" rel="noopener">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h4>
         {{ n.html }}
+        {% if n.excerpt %}<blockquote class="excerpt">«{{ n.excerpt }}»{% if n.excerpt_source %}<cite>— {{ n.excerpt_source }}</cite>{% endif %}</blockquote>{% endif %}
         {% if n.links %}<p class="sources">{% for l in n.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.source }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>{% endif %}
         {% if draft and n.confirm %}<p class="confirm">? {{ n.confirm }}</p>{% endif %}
       </article>

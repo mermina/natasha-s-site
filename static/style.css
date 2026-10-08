@@ -189,3 +189,5 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 .newsrail .backtostart{flex:0 0 auto;align-self:center;margin:0 28px 0 10px;background:none;border:1px solid var(--line);border-radius:999px;padding:12px 20px;font:13px -apple-system,Arial,sans-serif;color:var(--ink);cursor:pointer}
 .newsrail .ncard .pic.contain{background:#fff}
 .newsrail .ncard .pic.contain img{object-fit:contain}
+.newsrail .ncard .excerpt{margin:4px 0 10px;padding:0 0 0 12px;border-left:2px solid var(--line);font-size:14px;line-height:1.5;font-style:italic;color:var(--ink)}
+.newsrail .ncard .excerpt cite{display:block;margin-top:4px;font:normal 11px/1.4 -apple-system,Arial,sans-serif;letter-spacing:.06em;color:var(--muted)}

@@ -10,5 +10,7 @@ image: https://myndir.ruv.is/eyJidWNrZXQiOiAicnV2LXByb2QtcnV2aXMtcHVibGljIiwgImt
 image_credit: RÚV
 image_permission: true
 show: true
+excerpt: Ég verð skáld á nýju ári, hugsaði Natasha S á nýársdag 2022 eftir að hafa tekið þátt í ljóðaupplestri 25 skálda í Gröndalshúsi frá sólarupprás til sólarlags á fyrsta degi ársins. Og svo varð.
+excerpt_source: RÚV
 ---
 

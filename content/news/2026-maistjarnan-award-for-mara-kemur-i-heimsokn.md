@@ -11,5 +11,7 @@ image_credit: Landsbókasafn Íslands
 image_permission: true
 show: true
 pin: true
+excerpt: Skáldið Natasha S. hefur hlotið Maístjörnuna, ljóðabókaverðlaun Rithöfundasambands Íslands og Landsbókasafns Íslands – Háskólabókasafns, fyrir ljóðabók sína Mara kemur í heimsókn.
+excerpt_source: Landsbókasafn
 ---
 My second poetry book «Mara kemur í heimsókn» won the May Star (Maístjarnan), the annual Icelandic poetry book award.

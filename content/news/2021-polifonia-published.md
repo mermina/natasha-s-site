@@ -15,5 +15,7 @@ image_credit: Reykjavík Grapevine / Art Bicnick
 image_permission: true
 show: true
 pin: true
+excerpt: 'But there will always be brave poets, and a collection of first-generation immigrant writers in Iceland have composed a remarkably diverse and well-written book that breaks the toughest cultural wall there is in Iceland: the old tradition of poetry that Icelanders have dominated for centuries.'
+excerpt_source: Reykjavík Grapevine
 ---
 Poetry anthology of 15 authors from 12 countries, released on Icelandic Language Day. Editor and co-author.

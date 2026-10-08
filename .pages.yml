@@ -86,6 +86,8 @@ content:
             - { name: month, label: "месяц год" }
             - { name: year, label: "только год" }
       - { name: body, label: "Текст новости", type: text, description: "1–3 предложения (можно оставить пустым)" }
+      - { name: excerpt, label: "Цитата из статьи (необязательно)", type: text, description: "1–2 предложения из начала статьи, дословно — покажется курсивом в кавычках" }
+      - { name: excerpt_source, label: "Источник цитаты", type: string, description: "Напр. RÚV, Vísir" }
       - name: links
         label: "Ссылки — пресса, видео, интервью"
         type: object

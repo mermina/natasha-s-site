@@ -9,5 +9,7 @@ links:
 image: media/news/news-laxness-2026.jpg
 image_permission: true
 show: true
+excerpt: Í þættinum ræða Tómas og Natasha S., skáld og rithöfundur, bókina sín á milli.
+excerpt_source: RÚV · Víðsjá
 ---
 Tómas Ævar and I discussed the second book of Halldór Laxness, «Vefarinn mikli frá Kasmír», in his podcast Aldrei las ég Laxness.

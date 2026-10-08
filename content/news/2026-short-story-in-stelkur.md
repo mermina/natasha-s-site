@@ -9,5 +9,7 @@ links:
 image: ''
 show: true
 confirm: Month of publication?
+excerpt: Eftir að hafa opnað augun lá Tinna hreyfingarlaus.
+excerpt_source: Stelkur
 ---
 One of my short stories, «Kleinur», was published in Stelkur online magazine.

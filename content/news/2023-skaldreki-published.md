@@ -11,7 +11,8 @@ image_credit: RÚV – Una útgáfuhús
 image_permission: true
 show: true
 pin: true
-confirm: The skáld.is link on Skáldreki didn't come through in your doc (only “ld.is”).
-  Can you resend it?
+confirm: The skáld.is link on Skáldreki didn't come through in your doc (only “ld.is”). Can you resend it?
+excerpt: Innflytjendum á Íslandi fer ört fjölgandi og margir þeirra taka virkan þátt í íslensku menningarlífi. Raddir þeirra hafa þó ekki alltaf fengið að heyrast en með útgáfu safnrita á borð við Skáldreka hafa Íslendingar fengið að kynnast þeim betur.
+excerpt_source: RÚV
 ---
 Essays by foreign-born writers in Iceland. Editor and co-author. Una útgáfuhús.
